@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { environment } from '../../environments/environment.prod';
 
 @Component({
   selector: 'app-header',
@@ -10,4 +11,17 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
 
+  constructor() {
+    this.config()
+  }
+
+  title = 'andriicv';
+  logoPath = "assets/images/logo_name.png"
+
+  private config(): void {
+    if (environment.production) {
+      console.log("environment.production: " + environment.production)
+      this.logoPath = "https://andriicv-bucket.s3.amazonaws.com/images/logo_name.png"
+    }
+  }
 }
