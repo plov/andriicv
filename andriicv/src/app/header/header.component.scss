@@ -1,19 +1,15 @@
-body 
-{
-    margin: 0;
-    padding: 0;
-}
-
 .header_bg {
+    display: flex; 
     background: #fbcb67;
-    margin: 0;
-    padding: 0;
+    min-width: 400px;
+    min-height: 300px;
+    padding-left: 20px;
+    padding-right: 20px;
+
 }
 
-.logoName {
-    color: #fff;
-    font-size: 150px;
-    font-weight: bold;
-    text-align: center;
-    font: 100px, sans-serif;
-}
+.image-container {
+    display:block; 
+    margin: auto;
+    min-width: 200px;
+  }
