@@ -1,4 +1,4 @@
 export const environment = {
-    production: false,
+    production: true,
     assets : "s3://andriicv-bucket/"
 };
