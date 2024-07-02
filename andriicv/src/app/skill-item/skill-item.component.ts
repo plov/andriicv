@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-skill-item',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './skill-item.component.html',
   styleUrl: './skill-item.component.scss'
 })
