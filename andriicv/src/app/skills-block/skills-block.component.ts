@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { SkillItemComponent } from '../skill-item/skill-item.component';
 import { DataProviderService } from '../data-provider/data-provider.service';
+import { SkillModel } from '../models/skills/skill-model';
 
 @Component({
   selector: 'app-skills-block',
@@ -11,14 +12,14 @@ import { DataProviderService } from '../data-provider/data-provider.service';
   styleUrl: './skills-block.component.scss'
 })
 export class SkillsBlockComponent implements OnInit {
-  skills: string[] = [];
+  skillsModel: Array<SkillModel> = [];
 
   constructor(private dataProviderService: DataProviderService) { }
 
   ngOnInit() {
    
     this.dataProviderService.getSkills().subscribe(data => {
-      this.skills = data;
+      this.skillsModel = data;
     });
   }
 

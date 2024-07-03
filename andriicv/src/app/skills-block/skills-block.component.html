@@ -6,11 +6,9 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let skill of skills">
+            <tr *ngFor="let skill of skillsModel">
                 <td>
-                    <!--<app-skill-item>-->
-                        {{ skill }}
-                    <!--</app-skill-item>-->
+                    <app-skill-item [skillValue] = "skill.skillName"></app-skill-item>
                 </td>
             </tr>
         </tbody>
