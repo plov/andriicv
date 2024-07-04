@@ -9,7 +9,7 @@ import { environment } from '../../environments/environment';
 })
 export class DataProviderService {
 
-  dataPath = 'assets/data/info.json';
+  dataPath: string = 'assets/data/info.json';
   constructor(private httpClient: HttpClient) { 
     this.config()
   }
@@ -23,7 +23,7 @@ export class DataProviderService {
   }
 
   getJson(): Observable<any> {
-    return this.httpClient.get('assets/data/info.json');
+    return this.httpClient.get(this.dataPath);
   }
 
   //getSkills(): Observable<Array<SkillModel>> {
