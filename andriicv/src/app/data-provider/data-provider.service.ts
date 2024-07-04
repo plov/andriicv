@@ -18,6 +18,7 @@ export class DataProviderService {
     if (environment.production) {
       console.log("environment.production: " + environment.production)
       this.dataPath = "https://andriicv-bucket.s3.amazonaws.com/data/info.json"
+      console.log("this.dataPath: " + this.dataPath)
     }
   }
 
