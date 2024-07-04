@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { RouterModule, RouterOutlet } from '@angular/router';
+import { StaticConf } from '../statcconf';
 
 @Component({
   selector: 'app-header',
@@ -17,12 +18,12 @@ export class HeaderComponent {
   }
 
   title = 'andriicv';
-  logoPath = "assets/images/logo_name.png"
+  logoPath = StaticConf.localPath + StaticConf.imagesPath + StaticConf.logoName;
 
   private config(): void {
     if (environment.production) {
       console.log("environment.production: " + environment.production)
-      this.logoPath = "https://andriicv-bucket.s3.amazonaws.com/images/logo_name.png"
+      this.logoPath =  StaticConf.s3backetPath + StaticConf.imagesPath + StaticConf.logoName;
     }
   }
 }
