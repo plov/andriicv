@@ -1,0 +1,15 @@
+<div class="expiriance-container">
+    <table>
+        <thead>
+            <tr>
+                <th><h5>EXPERIENCE:</h5></th>
+            </tr>
+        <tbody>
+            <tr *ngFor="let mainBlock of mainBlocksInfo">
+                <td>
+                    <app-main-block-item [experience]="mainBlock" ></app-main-block-item>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
