@@ -17,7 +17,7 @@ export class MainBlocksContainerComponent {
   constructor(private dataProviderService: DataProviderService) { }
 
   ngOnInit() {
-    this.dataProviderService.getMainBlockInfo().subscribe(data => {
+    this.dataProviderService.getMainBlocksInfo().subscribe(data => {
       this.mainBlocksInfo = data;
       console.log(this.mainBlocksInfo);
     });

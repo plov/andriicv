@@ -1,0 +1,15 @@
+.main-container{
+    display: flex;
+}
+.left-box{
+    flex: 1;
+    display: flex;
+    background: #f5f5f3;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+
+.right-box{
+    flex: 3;
+}
