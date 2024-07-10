@@ -17,9 +17,14 @@ export class DataProviderService {
 
   setBlockId(blockId: any) {
     this.blockId = blockId;
+    this.saveBLockIdInCache()
   }
 
   getBlockId() {
+    const blockId = this.getBLockIdFromCache();
+    if (this.blockId === 0 && blockId !== undefined) {
+      this.blockId = blockId;
+    }
     return this.blockId;
   }
   
@@ -32,6 +37,18 @@ export class DataProviderService {
       this.dataPath = StaticConf.s3backetPath + StaticConf.dataPath;
       console.log("this.dataPath: " + this.dataPath)
     }
+  }
+
+  private getBLockIdFromCache() {
+    const cachedData = sessionStorage.getItem('blockId');
+    if (cachedData) {
+      return JSON.parse(cachedData);
+    }
+  }
+
+  private saveBLockIdInCache() {     
+      sessionStorage.setItem('blockId', JSON.stringify(this.blockId));
+      return this.blockId;
   }
 
   private getSkillsJson(): Observable<any> {
