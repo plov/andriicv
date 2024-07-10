@@ -12,6 +12,16 @@ import { MainBlockModel } from '../models/main-block/main-block-model';
 export class DataProviderService {
 
   dataPath: string = StaticConf.localPath + StaticConf.dataPath;
+
+  private blockId: number = 0;
+
+  setBlockId(blockId: any) {
+    this.blockId = blockId;
+  }
+
+  getBlockId() {
+    return this.blockId;
+  }
   
   constructor(private httpClient: HttpClient) { 
     this.config()
@@ -55,10 +65,16 @@ export class DataProviderService {
     return skills.sort((a, b) => a.skillViewOrder - b.skillViewOrder);
   }
 
-
-  getMainBlockInfo(): Observable<Array<MainBlockModel>> {
+  getMainBlocksInfo(): Observable<Array<MainBlockModel>> {
     return this.getMainBlockJson().pipe(
       map(data => this.mapMainBlock(data.MainBlocs))
+    );
+  }
+
+  getMainBlockById(id: number): Observable<MainBlockModel> {
+    return this.getMainBlockJson().pipe(
+      map((data: any) => data.MainBlocs.find((block: any) => block.id === id)),
+      map((block: any) => this.convertToMainBlockModel(block))
     );
   }
 

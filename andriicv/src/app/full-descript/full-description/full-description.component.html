@@ -1,0 +1,24 @@
+<app-header></app-header>
+<div class="main-container">
+    <div class="left-box"> <app-skills-block></app-skills-block></div>
+    <div class="right-box">
+            <div>
+                <button (click)="onButtonClick()">back</button>
+           </div>
+            <div>
+                <p>{{title}}
+                    {{time}}</p>
+            </div>
+        
+            <div>
+                <p *ngIf="position !== ''" >{{position}}</p>
+                <p>{{location}}</p>
+            </div>
+        
+            <div>
+                <p>Description:</p>
+                <p>{{description}}</p>
+                <p>{{lDescription}}</p>
+            </div>
+    </div>
+</div>

@@ -1,8 +1,10 @@
 import { Routes } from '@angular/router';
-import { LoginformComponent } from './loginform/loginform.component';
-import { HeaderComponent } from './header/header.component';
+import { AppComponent } from './app.component';
+import { FullDescriptionComponent } from './full-descript/full-description/full-description.component';
+import { MainPageComponent } from './main-page/main-page.component';
 
 export const routes: Routes = [
-    {path: 'app-loginform', component: LoginformComponent}, 
-    {path: 'app-header', component: HeaderComponent},
+    { path: '', redirectTo: '/app-main-page', pathMatch: 'full' },
+    {path: 'app-main-page', component: MainPageComponent}, 
+    {path: 'app-full-description', component: FullDescriptionComponent},
 ];
