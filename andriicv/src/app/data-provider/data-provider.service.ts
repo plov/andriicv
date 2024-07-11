@@ -78,6 +78,16 @@ export class DataProviderService {
     );
   }
 
+  getSkillsByIds(ids: Array<number>): Observable<Array<SkillModel>> {
+    return this.getSkillsJson().pipe(
+      map(data => this.mapSkills(this.filterSkillsById(data.skillsObjects, ids)))
+    );
+  }
+  
+  private filterSkillsById(skills: Array<any>, ids: Array<number>): Array<any> {
+    return skills.filter(skill => ids.includes(skill.id));
+  }
+
   private sortSkillsByViewOrder(skills: Array<SkillModel>): Array<SkillModel> {
     return skills.sort((a, b) => a.skillViewOrder - b.skillViewOrder);
   }
@@ -120,5 +130,4 @@ export class DataProviderService {
   private sortBlocksByViewOrder(mainBloc: Array<MainBlockModel>): MainBlockModel[] {
     return mainBloc.sort((a, b) => a.blockViewOrder - b.blockViewOrder);
   }
-
 }

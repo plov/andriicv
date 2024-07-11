@@ -17,9 +17,19 @@ export class SkillsBlockComponent implements OnInit {
   constructor(private dataProviderService: DataProviderService) { }
 
   ngOnInit() {
-   
-    this.dataProviderService.getSkills().subscribe(data => {
-      this.skillsModel = data;
-    });
+    const blockId = this.dataProviderService.getBlockId();
+    if (blockId === 0) {
+      this.dataProviderService.getSkills().subscribe(data => {
+        this.skillsModel = data;
+      });
+    } else {
+      this.dataProviderService.getMainBlockById(blockId).subscribe(data => {
+        const mainBlockInfo = data;
+        const skillsIds = mainBlockInfo.skillsIds;
+        this.dataProviderService.getSkillsByIds(skillsIds).subscribe(data => {
+          this.skillsModel = data;
+        });
+      });
+    }
   }
 }
