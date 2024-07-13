@@ -3,7 +3,7 @@
     flex-direction: column;
     justify-content: flex-start;
     background: #fff361;
-    min-height: 150vh;
+    min-height: 100vh;
     width: 150px;
 }
 
@@ -18,4 +18,10 @@ table {
     margin: 10px 0;
     font-family: 'Verdana', sans-serif;
     color: #a5cfe8;
+}
+
+@media screen and (max-width: 768px) and (orientation: portrait) {
+    .skills-block { 
+        min-height: 150vh;
+    }
 }
