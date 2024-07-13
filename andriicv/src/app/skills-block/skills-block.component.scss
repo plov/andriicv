@@ -3,10 +3,19 @@
     flex-direction: column;
     justify-content: flex-start;
     background: #fff361;
-    height: 100vh;
+    min-height: 150vh;
     width: 150px;
 }
 
 table {
     width: 100%;
+}
+
+.title{
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin: 10px 0;
+    font-family: 'Verdana', sans-serif;
+    color: #a5cfe8;
 }
