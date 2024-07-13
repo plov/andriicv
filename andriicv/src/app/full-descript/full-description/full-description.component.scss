@@ -6,15 +6,16 @@
 .left-box{
     flex: 1;
     display: flex;
-    background: #f5f5f3;
+    background: #ffffff;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-end;
+    box-shadow: inset -10px 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .right-box{
     flex: 3;
-
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
 }
 .description-block{
     display: flex;
@@ -22,8 +23,10 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    background: #f5f5f3;
+    background: #def5fc;
     padding: 10px;
+    margin-left: 5px;
+    margin-top: 10px;
     border: style_vars.$border-style;
     border-radius: 8px;
 }

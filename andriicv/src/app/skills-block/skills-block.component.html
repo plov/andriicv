@@ -8,7 +8,9 @@
         <tbody>
             <tr *ngFor="let skill of skillsModel">
                 <td>
-                    <app-skill-item [skillValue] = "skill.skillName"></app-skill-item>
+                    <app-skill-item [skillValue] = "skill.skillName" 
+                    [skillUsages] = "skill.skillUsages" 
+                    [slillYears] = "skill.skillYears"></app-skill-item>
                 </td>
             </tr>
         </tbody>
