@@ -1,1 +1,6 @@
-<div class="slill-item">{{skillValue}}</div>
+<div class="slill-item" (click)="myModal.open()">{{skillValue}}</div>
+<app-skills-description title={{skillValue}} #myModal>
+    <p>Experience usage {{slillYears}} years</p>
+    <p>Description:</p>
+    <p>{{skillUsages}}</p>
+  </app-skills-description>

@@ -51,6 +51,7 @@ export class FullDescriptionComponent implements OnInit {
   }
 
   onButtonClick(): void {
+    this.dataProviderService.setBlockId(0);
     this.router.navigate(['/']);
   }
 

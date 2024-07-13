@@ -2,13 +2,15 @@
     <table class="skills-table">
         <thead>
             <tr>
-                <th><H5>SKILLS:</H5></th>
+                <th><div class="title">Skills:</div></th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let skill of skillsModel">
                 <td>
-                    <app-skill-item [skillValue] = "skill.skillName"></app-skill-item>
+                    <app-skill-item [skillValue] = "skill.skillName" 
+                    [skillUsages] = "skill.skillUsages" 
+                    [slillYears] = "skill.skillYears"></app-skill-item>
                 </td>
             </tr>
         </tbody>
