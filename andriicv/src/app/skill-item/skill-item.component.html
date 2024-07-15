@@ -1,6 +1,6 @@
-<div class="slill-item" (click)="myModal.open()">{{skillValue}}</div>
-<app-skills-description title={{skillValue}} #myModal>
-    <p>Experience usage {{slillYears}} years</p>
+<div class="skill-item" (click)="myModal.open()">{{skillValue}}</div>
+<app-skills-description title={{skillValue}}  image={{skillimage}} #myModal>
+    <p>Experience usage {{skillYears}} years</p>
     <p>Description:</p>
     <p>{{skillUsages}}</p>
   </app-skills-description>

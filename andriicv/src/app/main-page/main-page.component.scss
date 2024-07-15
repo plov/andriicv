@@ -2,6 +2,7 @@
 
 .main-container{
     display: flex;
+    width: 100lvw;
 }
 .left-box{
     flex: 1;
@@ -15,5 +16,17 @@
 
 .right-box{
     flex: 3;
+    padding: 5px;
     box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
 }
+
+@media (max-width: 768px) {
+    .left-box {
+        box-shadow: none;
+    }
+
+    .right-box{
+        box-shadow: none;
+    }
+}
+
