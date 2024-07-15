@@ -13,7 +13,8 @@ export class SkillItemComponent implements OnInit{
 
   @Input() skillValue: string = '';
   @Input() skillUsages: string = '';
-  @Input() slillYears: number = 0;
+  @Input() skillYears: number = 0;
+  @Input() skillimage: string = '';
 
   constructor() { }
 

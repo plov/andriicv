@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { BehaviorSubject, Observable, map } from 'rxjs';
 import { SkillModel } from '../models/skills/skill-model';
 import { environment } from '../../environments/environment';
-import { StaticConf } from '../statcconf';
+import { StaticConf } from '../staticconf';
 import { MainBlockModel } from '../models/main-block/main-block-model';
 
 @Injectable({
@@ -13,7 +13,14 @@ export class DataProviderService {
 
   dataPath: string = StaticConf.localPath + StaticConf.dataPath;
 
+  private dataSource = new BehaviorSubject<any>(null);
+  componenState = this.dataSource.asObservable();
+
   private blockId: number = 0;
+
+  updateState() {
+    this.dataSource.next(this.componenState);
+  }
 
   setBlockId(blockId: any) {
     this.blockId = blockId;
@@ -63,6 +70,7 @@ export class DataProviderService {
     skillModel.skillName = skillObj.skillName;
     skillModel.skillYears = skillObj.skillYears;
     skillModel.skillUsages = skillObj.skillUsages;
+    skillModel.image = skillObj.image;
     return skillModel;
   }
 

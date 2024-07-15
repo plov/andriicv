@@ -36,8 +36,10 @@ export class MainBlockItemComponent implements OnInit {
   }
 
   onButtonClick(): void {
+    
     this.dataProviderService.setBlockId(this.id);
-    this.router.navigate(['/app-full-description']);
+    this.dataProviderService.updateState();
+    //this.router.navigate(['/app-full-description']);
   }
 
 }

@@ -4,4 +4,5 @@ export class SkillModel {
     public skillName: string = "";
     public skillYears: number = 0;
     public skillUsages: string = "";
+    public image: string = "";
 }

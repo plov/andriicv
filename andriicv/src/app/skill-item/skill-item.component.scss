@@ -1,8 +1,6 @@
 @use '../../variables' as style_vars;
 
-@use '../../variables' as style_vars;
-
-.slill-item{
+.skill-item{
     display: flex;
     background: #f5f5f3;
     justify-content: center;
@@ -21,4 +19,19 @@
     color: #fbc046;
     cursor: pointer;
 } 
-} 
+.skill-item:hover{
+    display: flex;
+    background: #f5f5f3;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    box-shadow: inset -1px -2px 3px rgba(0, 0, 0, 0.2),
+    inset 1px 2px 3px rgba(0, 0, 0, 0.2);
+    border: style_vars.$border-style;
+    border-radius: 8px;
+    font-size: 1.0rem;
+    font-weight: 700;
+    font-family: 'Verdana', sans-serif;
+    color: #fbc046;
+    cursor: pointer;
+}

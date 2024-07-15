@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { SkillItemComponent } from '../skill-item/skill-item.component';
 import { DataProviderService } from '../data-provider/data-provider.service';
 import { SkillModel } from '../models/skills/skill-model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-skills-block',
@@ -13,23 +14,43 @@ import { SkillModel } from '../models/skills/skill-model';
 })
 export class SkillsBlockComponent implements OnInit {
   skillsModel: Array<SkillModel> = [];
+  private subscription: Subscription = new Subscription();
 
-  constructor(private dataProviderService: DataProviderService) { }
+  constructor(private dataProviderService: DataProviderService) { 
+    this.dataProviderService = dataProviderService;
+  }
 
   ngOnInit() {
-    const blockId = this.dataProviderService.getBlockId();
-    if (blockId === 0) {
-      this.dataProviderService.getSkills().subscribe(data => {
-        this.skillsModel = data;
-      });
-    } else {
-      this.dataProviderService.getMainBlockById(blockId).subscribe(data => {
-        const mainBlockInfo = data;
-        const skillsIds = mainBlockInfo.skillsIds;
-        this.dataProviderService.getSkillsByIds(skillsIds).subscribe(data => {
-          this.skillsModel = data;
-        });
-      });
-    }
+    this.subscribeToData();
   }
+
+  private subscribeToData() {
+    this.subscription.add(
+      this.dataProviderService.componenState.subscribe(() => {
+        const blockId = this.dataProviderService.getBlockId();
+        if (blockId === 0) {
+          this.dataProviderService.getSkills().subscribe(data => {
+            this.skillsModel = data;
+          });
+        } else {
+          this.dataProviderService.getMainBlockById(blockId).subscribe(data => {
+            const mainBlockInfo = data;
+            const skillsIds = mainBlockInfo.skillsIds;
+            this.dataProviderService.getSkillsByIds(skillsIds).subscribe(data => {
+              this.skillsModel = data;
+            });
+          });
+        }
+      })
+    );
+  }
+
+  private unsubscribe() {
+    this.subscription.unsubscribe();
+  }
+
+  ngOnDestroy() {
+    this.unsubscribe();
+  }
+
 }
