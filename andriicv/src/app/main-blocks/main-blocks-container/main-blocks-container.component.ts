@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { MainBlockItemComponent } from '../main-block-item/main-block-item.component';
 import { DataProviderService } from '../../data-provider/data-provider.service';
 import { MainBlockModel } from '../../models/main-block/main-block-model';
+import { StaticConf } from '../../staticconf';
 
 @Component({
   selector: 'app-main-blocks-container',

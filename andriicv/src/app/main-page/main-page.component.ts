@@ -7,6 +7,7 @@ import { MainBlocksContainerComponent } from '../main-blocks/main-blocks-contain
 import { DynamicComponentDirective } from '../directives/dynamic-component.directive';
 import { DataProviderService } from '../data-provider/data-provider.service';
 import { FullDescriptionComponent } from '../full-descript/full-description/full-description.component';
+import { TabBarComponent } from '../tabs/tab-bar/tab-bar.component';
 
 @Component({
   selector: 'app-main-page',
@@ -18,7 +19,8 @@ import { FullDescriptionComponent } from '../full-descript/full-description/full
     SkillsBlockComponent,
     MainBlocksContainerComponent,
     FullDescriptionComponent,
-    DynamicComponentDirective
+    DynamicComponentDirective,
+    TabBarComponent
   ],
   templateUrl: './main-page.component.html',
   styleUrl: './main-page.component.scss'

@@ -5,6 +5,7 @@ import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from '../../header/header.component';
 import { SkillsBlockComponent } from '../../skills-block/skills-block.component';
 import { DataProviderService } from '../../data-provider/data-provider.service';
+import { StaticConf } from '../../staticconf';
 
 @Component({
   selector: 'app-full-description',

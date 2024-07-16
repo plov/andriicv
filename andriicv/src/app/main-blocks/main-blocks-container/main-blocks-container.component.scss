@@ -3,15 +3,11 @@ table {
     width: 100%;
     align-content: center;
 }
-.title{
+
+.expiriance-container{
     display: flex;
-    text-align: center;
-    width: 80%;
-    padding-left: 50px;
-    margin: 10px 0;
-    font-size: 1.5rem;
-    font-weight: 700;
-    text-align: center;
-    font-family: 'Verdana', sans-serif;
-    color: #e77e73;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    padding: 0;
 }
+

@@ -4,6 +4,7 @@ import { SkillItemComponent } from '../skill-item/skill-item.component';
 import { DataProviderService } from '../data-provider/data-provider.service';
 import { SkillModel } from '../models/skills/skill-model';
 import { Subscription } from 'rxjs';
+import { StaticConf } from '../staticconf';
 
 @Component({
   selector: 'app-skills-block',

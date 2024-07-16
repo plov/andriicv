@@ -16,6 +16,5 @@ import { CommonModule } from '@angular/common';
 export class AppComponent {
 
   constructor() {
-    console.log("---main component")
    }
 }

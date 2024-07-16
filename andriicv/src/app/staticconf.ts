@@ -8,6 +8,7 @@ static iconsPath: string = "/images/icons/";
 static skillsInfo: string = "skills.json";
 static logoName: string = "logo_name.png"
 static mainBlocksInfo: string = "main_blocks.json";
-
-
+static educationInfo: string = "education.json";
+static projectsInfo: string = "projects.json";
+static volonteeringInfo: string = "volonteering.json";
 }

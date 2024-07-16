@@ -16,6 +16,8 @@ export class DataProviderService {
   private dataSource = new BehaviorSubject<any>(null);
   componenState = this.dataSource.asObservable();
 
+  private fileName: string = StaticConf.mainBlocksInfo;
+  private tabId: string = "";
   private blockId: number = 0;
 
   updateState() {
@@ -33,6 +35,36 @@ export class DataProviderService {
       this.blockId = blockId;
     }
     return this.blockId;
+  }
+
+  setTabId(tabId: any) {
+    this.tabId = tabId;
+    switch (tabId) {
+      case 1:
+        this.fileName = StaticConf.mainBlocksInfo;
+        break;
+      case 2:
+        this.fileName = StaticConf.projectsInfo;
+        break;
+      case 3:
+        this.fileName = StaticConf.educationInfo;
+        break;
+      case 4:
+        this.fileName = StaticConf.volonteeringInfo;
+        break;
+      default:
+        this.fileName = StaticConf.mainBlocksInfo;
+        break;
+    }
+    this.saveTabIdInCache()
+  }
+
+  getTabId() {
+    const tabId = this.getTabIdFromCache();
+    if (this.tabId === "" && tabId !== undefined) {
+      this.tabId = tabId;
+    }
+    return this.tabId;
   }
   
   constructor(private httpClient: HttpClient) { 
@@ -56,6 +88,18 @@ export class DataProviderService {
   private saveBLockIdInCache() {     
       sessionStorage.setItem('blockId', JSON.stringify(this.blockId));
       return this.blockId;
+  }
+
+  private getTabIdFromCache() {
+    const cachedData = sessionStorage.getItem('tabId');
+    if (cachedData) {
+      return JSON.parse(cachedData);
+    }
+  }
+
+  private saveTabIdInCache() {     
+      sessionStorage.setItem('tabId', JSON.stringify(this.tabId));
+      return this.tabId;
   }
 
   private getSkillsJson(): Observable<any> {
@@ -114,7 +158,7 @@ export class DataProviderService {
   }
 
   private getMainBlockJson(): Observable<any> {
-    return this.httpClient.get(this.dataPath + StaticConf.mainBlocksInfo);
+    return this.httpClient.get(this.dataPath + this.fileName);
   }
 
   private mapMainBlock(mainBlockObjects: any[]): MainBlockModel[] {
