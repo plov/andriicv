@@ -41,7 +41,7 @@
 
 @media (max-width: 768px) {
     .tab-button {
-        width: 60px;
+        width: 50px;
         margin: 1px;
         font-size: 0.4rem;
         
@@ -49,8 +49,8 @@
     }
     .tabs-bar{
         display: flex;
-        width: 100vw;
-        min-width: 100%;
+        padding-right: 10px;
+        min-width: 240px;
         min-height: 50px;
         align-content: flex-end;
         align-items: center;
