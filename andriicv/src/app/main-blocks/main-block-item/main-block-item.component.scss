@@ -35,11 +35,12 @@ p {
 @media screen and (max-width: 768px) and (orientation: portrait) {
     .main-block-item {
         display: block;
-        width: 98%;
-        background: #f5f5f3;
+        width: 90%;
+        background: #def5fc;
         justify-content: space-between;
         align-items: center;
         padding: 10px;
+        margin: 0;
         border: style_vars.$border-style;
         font-weight: 400;
         border-radius: 8px;
