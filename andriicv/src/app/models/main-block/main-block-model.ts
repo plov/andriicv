@@ -9,4 +9,6 @@ export class MainBlockModel {
     public longDescription: string = "";
     public skillsIds: Array<number> = [];
     public location: string = "";
+    public icon: string = "";
+    public links: Array<string> = [];
 }

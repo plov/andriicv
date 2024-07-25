@@ -172,10 +172,13 @@ export class DataProviderService {
     mainBlockModel.blockName = mainBlockObj.blockName;
     mainBlockModel.blockType = mainBlockObj.blockType;
     mainBlockModel.years = mainBlockObj.years;
-    mainBlockModel.shortDescription = mainBlockObj.shortDescription;
-    mainBlockModel.longDescription = mainBlockObj.longDescription;
+    mainBlockModel.position = mainBlockObj.position;
+    mainBlockModel.shortDescription = Array.isArray(mainBlockObj.shortDescription) ? mainBlockObj.shortDescription.join('') : mainBlockObj.shortDescription;
+    mainBlockModel.longDescription = Array.isArray(mainBlockObj.longDescription) ? mainBlockObj.longDescription.join('') : mainBlockObj.longDescription;
     mainBlockModel.location = mainBlockObj.location;
     mainBlockModel.skillsIds = mainBlockObj.skillsIds;
+    mainBlockModel.icon = mainBlockObj.icon;
+    mainBlockModel.links = mainBlockObj.links;
     return mainBlockModel;
   }
 

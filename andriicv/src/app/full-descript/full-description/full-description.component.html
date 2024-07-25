@@ -1,20 +1,26 @@
 <div class="description-block">
-    <div>
+    <div><img src="{{ icon }}" alt=" " class="icon"> </div>
+    <div class="flex-container">
         <button (click)="onButtonClick()">back</button>
-    </div>
-    <div>
-        <p>{{title}}
-            {{time}}</p>
+        <p class="left"><strong>{{title}}</strong></p>
+        <p class="right"><em>years: </em><strong>{{time}}</strong></p>
     </div>
 
-    <div>
-        <p *ngIf="position !== ''">{{position}}</p>
-        <p>{{location}}</p>
+    <div class="block-one">
+        <p *ngIf="position !== ''" ><em>Position: </em><strong>{{position}}</strong></p>
+        <p><em>Country: </em><strong>{{location}}</strong></p>
     </div>
 
-    <div>
+
+    <div class="block-two">
         <p>Description:</p>
-        <p>{{description}}</p>
-        <p>{{lDescription}}</p>
+        <p [innerHTML]="description"></p>
+        <p [innerHTML]="lDescription"></p>
+    </div>
+    <div class="block-three">
+        <p>Links:</p>
+        <ul>
+            <li *ngFor="let link of links"> <a href="{{link}}" target="_blank">{{link}}</a></li>
+        </ul>
     </div>
 </div>

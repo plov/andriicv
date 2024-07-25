@@ -1,17 +1,18 @@
 <div class="main-block-item">
-    <div class="info">
-        <p>{{title}}
-            {{time}}</p>
+    <div><img src="{{ icon }}" alt=" " class="icon"> </div>
+    <div class="flex-container">
+        <p class="left"><em>Company: </em><strong>{{title}}</strong></p>
+        <p class="right"><em>Years: </em><strong>{{time}}</strong></p>
     </div>
 
     <div>
-        <p *ngIf="position !== ''" >{{position}}</p>
-        <p>{{location}}</p>
+        <p *ngIf="position !== ''" ><em>Position: </em><strong>{{position}}</strong></p>
+        <p><em>Country: </em><strong>{{location}}</strong></p>
     </div>
 
     <div>
-        <p>Description:</p>
-        <p>{{description}}</p>
+        <p><em>Description:</em></p>
+        <p [innerHTML]="description"></p>
     </div>
     <div class="more">
         <button (click)="onButtonClick()">more</button>

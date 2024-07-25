@@ -15,10 +15,10 @@
     margin-left: 5px;
 }
 
-.info {
+.flex-container {
     display: flex;
-    justify-content: space-between;
-    background: #e9f8fd;
+    justify-content: space-between; 
+    align-items: center; 
 }
 
 p {
@@ -30,6 +30,12 @@ p {
     display: flex;
     justify-content: end;
     align-items: center;
+}
+.icon {
+    margin-right: 5px;
+    width: 50px;
+    height: 50px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 @media screen and (max-width: 768px) and (orientation: portrait) {
@@ -44,5 +50,10 @@ p {
         border: style_vars.$border-style;
         font-weight: 400;
         border-radius: 8px;
+    }
+    .flex-container {
+        display: block;
+        justify-content: colinm; 
+        align-items: center; 
     }
 }

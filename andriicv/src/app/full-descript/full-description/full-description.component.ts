@@ -6,6 +6,8 @@ import { HeaderComponent } from '../../header/header.component';
 import { SkillsBlockComponent } from '../../skills-block/skills-block.component';
 import { DataProviderService } from '../../data-provider/data-provider.service';
 import { StaticConf } from '../../staticconf';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-full-description',
@@ -25,12 +27,14 @@ export class FullDescriptionComponent implements OnInit {
 
   title: string = "";
   time: string = "";
-  description: string = "";
-  lDescription: string = "";
+  description: SafeHtml = "";
+  lDescription: SafeHtml = "";
   position: string = "";
   location: string = "";
+  icon: string = "";
+  links: Array<string> = [];
 
-  constructor(private router: Router, private dataProviderService: DataProviderService) {
+  constructor(private router: Router, private dataProviderService: DataProviderService, private sanitizer:DomSanitizer) {
 
   }
 
@@ -40,13 +44,22 @@ export class FullDescriptionComponent implements OnInit {
     if (id !== 0) {
       this.dataProviderService.getMainBlockById(id).subscribe(data => {
         this.mainBlockInfo = data;
-        console.log(this.mainBlockInfo);
         this.title = this.mainBlockInfo.blockName;
         this.time = this.mainBlockInfo.years;
-        this.description = this.mainBlockInfo.shortDescription;
-        this.lDescription = this.mainBlockInfo.longDescription;
+        this.description = this.sanitizer.bypassSecurityTrustHtml(this.mainBlockInfo.shortDescription);
+        this.lDescription = this.sanitizer.bypassSecurityTrustHtml(this.mainBlockInfo.longDescription);
         this.position = this.mainBlockInfo.position;
         this.location = this.mainBlockInfo.location;
+        this.icon = this.mainBlockInfo.icon;
+        this.links = this.mainBlockInfo.links;
+
+        if (environment.production) {
+          console.log("environment.production: " + environment.production)
+          this.icon = StaticConf.s3backetPath + StaticConf.iconsPath + this.icon;
+        } else {
+          this.icon = StaticConf.localPath + StaticConf.iconsPath + this.icon;
+          console.log("icon path "+this.icon);
+        }
       });
     }
   }
