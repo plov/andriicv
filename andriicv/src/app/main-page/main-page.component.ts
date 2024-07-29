@@ -1,3 +1,9 @@
+(function() {
+  if (typeof global === 'undefined') {
+    (window as any).global = window;
+  }
+})();
+
 import { CommonModule } from '@angular/common';
 import { Component, ViewChild } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
@@ -8,6 +14,7 @@ import { DynamicComponentDirective } from '../directives/dynamic-component.direc
 import { DataProviderService } from '../data-provider/data-provider.service';
 import { FullDescriptionComponent } from '../full-descript/full-description/full-description.component';
 import { TabBarComponent } from '../tabs/tab-bar/tab-bar.component';
+import { S3Service } from '../services/s3-service.service';
 
 @Component({
   selector: 'app-main-page',
@@ -28,11 +35,14 @@ import { TabBarComponent } from '../tabs/tab-bar/tab-bar.component';
 export class MainPageComponent {
   @ViewChild(DynamicComponentDirective, { static: true }) dynamicComponent!: DynamicComponentDirective;
 
-  constructor(private dataProviderService: DataProviderService) { }
+  constructor(private dataProviderService: DataProviderService, private s3Service: S3Service) { }
 
   ngOnInit() {
     this.loadDynamicComponent(MainBlocksContainerComponent);
     this.subscribeToData();
+    this.s3Service.readJsonFile().then((data) => {
+      console.log(data);
+    });
   }
 
   loadDynamicComponent(component: any) {
