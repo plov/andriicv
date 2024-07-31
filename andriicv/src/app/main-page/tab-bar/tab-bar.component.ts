@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { DataProviderService } from '../../data-provider/data-provider.service';
+import { DataProviderService } from '../../services/data-provider/data-provider.service';
+import { AppStateService } from '../../services/state-servises/app-state-service.service';
 
 @Component({
   selector: 'app-tab-bar',
@@ -19,7 +20,7 @@ export class TabBarComponent implements OnInit {
   ];
   activeTab: number = this.tabs[0].id;
 
-  constructor(private dataProviderService: DataProviderService) { }
+  constructor(private appStateService: AppStateService) { }
 
   ngOnInit() { 
      
@@ -27,8 +28,8 @@ export class TabBarComponent implements OnInit {
 
   selectTab(id: number) {
     this.activeTab = id;
-    this.dataProviderService.setBlockId(0);
-    this.dataProviderService.setTabId(id);
-    this.dataProviderService.updateState();
+    this.appStateService.setBlockId(0);
+    this.appStateService.setTabId(id);
+    this.appStateService.updateState();
   }
 }

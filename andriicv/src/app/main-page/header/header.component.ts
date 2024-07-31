@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
 import { RouterModule, RouterOutlet } from '@angular/router';
-import { StaticConf } from '../staticconf';
+import { StaticConf } from '../../staticconf';
 
 @Component({
   selector: 'app-header',
