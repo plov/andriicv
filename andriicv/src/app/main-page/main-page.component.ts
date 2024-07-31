@@ -7,14 +7,15 @@
 import { CommonModule } from '@angular/common';
 import { Component, ViewChild } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
-import { HeaderComponent } from '../header/header.component';
-import { SkillsBlockComponent } from '../skills-block/skills-block.component';
+import { HeaderComponent } from './header/header.component';
+import { SkillsBlockComponent } from '../skils/skills-block/skills-block.component';
 import { MainBlocksContainerComponent } from '../main-blocks/main-blocks-container/main-blocks-container.component';
 import { DynamicComponentDirective } from '../directives/dynamic-component.directive';
-import { DataProviderService } from '../data-provider/data-provider.service';
+import { DataProviderService } from '../services/data-provider/data-provider.service';
 import { FullDescriptionComponent } from '../full-descript/full-description/full-description.component';
-import { TabBarComponent } from '../tabs/tab-bar/tab-bar.component';
-import { S3Service } from '../services/s3-service.service';
+import { TabBarComponent } from './tab-bar/tab-bar.component';
+import { AppStateService } from '../services/state-servises/app-state-service.service';
+
 
 @Component({
   selector: 'app-main-page',
@@ -35,14 +36,11 @@ import { S3Service } from '../services/s3-service.service';
 export class MainPageComponent {
   @ViewChild(DynamicComponentDirective, { static: true }) dynamicComponent!: DynamicComponentDirective;
 
-  constructor(private dataProviderService: DataProviderService, private s3Service: S3Service) { }
+  constructor(private dataProviderService: DataProviderService, private appStateService: AppStateService) { }
 
   ngOnInit() {
     this.loadDynamicComponent(MainBlocksContainerComponent);
     this.subscribeToData();
-    this.s3Service.readJsonFile().then((data) => {
-      console.log(data);
-    });
   }
 
   loadDynamicComponent(component: any) {
@@ -53,8 +51,8 @@ export class MainPageComponent {
   }
 
   private subscribeToData() {
-    this.dataProviderService.componenState.subscribe(() => {
-      const blockId = this.dataProviderService.getBlockId();
+    this.appStateService.componenState.subscribe(() => {
+      const blockId = this.appStateService.getBlockId();
       if (blockId !== 0)
         this.loadDynamicComponent(FullDescriptionComponent)
       else

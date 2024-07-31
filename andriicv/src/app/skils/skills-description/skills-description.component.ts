@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
-import { StaticConf } from '../staticconf';
-import { environment } from '../../environments/environment';
+import { StaticConf } from '../../staticconf';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-skills-description',

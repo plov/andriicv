@@ -1,109 +1,37 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, map } from 'rxjs';
-import { SkillModel } from '../models/skills/skill-model';
-import { environment } from '../../environments/environment';
-import { StaticConf } from '../staticconf';
-import { MainBlockModel } from '../models/main-block/main-block-model';
+import { BehaviorSubject, Observable, map, from } from 'rxjs';
+import { SkillModel } from '../../models/skills/skill-model';
+import { environment } from '../../../environments/environment';
+import { StaticConf } from '../../staticconf';
+import { MainBlockModel } from '../../models/main-block/main-block-model';
+import { S3Service } from '../s3/s3-service.service';
+import { AppStateService } from '../state-servises/app-state-service.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataProviderService {
 
-  dataPath: string = StaticConf.localPath + StaticConf.dataPath;
-
-  private dataSource = new BehaviorSubject<any>(null);
-  componenState = this.dataSource.asObservable();
-
-  private fileName: string = StaticConf.mainBlocksInfo;
-  private tabId: string = "";
-  private blockId: number = 0;
-
-  updateState() {
-    this.dataSource.next(this.componenState);
-  }
-
-  setBlockId(blockId: any) {
-    this.blockId = blockId;
-    this.saveBLockIdInCache()
-  }
-
-  getBlockId() {
-    const blockId = this.getBLockIdFromCache();
-    if (this.blockId === 0 && blockId !== undefined) {
-      this.blockId = blockId;
-    }
-    return this.blockId;
-  }
-
-  setTabId(tabId: any) {
-    this.tabId = tabId;
-    switch (tabId) {
-      case 1:
-        this.fileName = StaticConf.mainBlocksInfo;
-        break;
-      case 2:
-        this.fileName = StaticConf.projectsInfo;
-        break;
-      case 3:
-        this.fileName = StaticConf.educationInfo;
-        break;
-      case 4:
-        this.fileName = StaticConf.volonteeringInfo;
-        break;
-      default:
-        this.fileName = StaticConf.mainBlocksInfo;
-        break;
-    }
-    this.saveTabIdInCache()
-  }
-
-  getTabId() {
-    const tabId = this.getTabIdFromCache();
-    if (this.tabId === "" && tabId !== undefined) {
-      this.tabId = tabId;
-    }
-    return this.tabId;
-  }
+  private dataPath: string = StaticConf.localPath + StaticConf.dataPath;
+  //private fileName: string = StaticConf.mainBlocksInfo;
   
-  constructor(private httpClient: HttpClient) { 
+  constructor(private httpClient: HttpClient, private s3Service: S3Service, private appStateService: AppStateService) { 
     this.config()
   }
 
   private config(): void {
     if (environment.production) {
       this.dataPath = StaticConf.s3backetPath + StaticConf.dataPath;
-      console.log("this.dataPath: " + this.dataPath)
     }
-  }
-
-  private getBLockIdFromCache() {
-    const cachedData = sessionStorage.getItem('blockId');
-    if (cachedData) {
-      return JSON.parse(cachedData);
-    }
-  }
-
-  private saveBLockIdInCache() {     
-      sessionStorage.setItem('blockId', JSON.stringify(this.blockId));
-      return this.blockId;
-  }
-
-  private getTabIdFromCache() {
-    const cachedData = sessionStorage.getItem('tabId');
-    if (cachedData) {
-      return JSON.parse(cachedData);
-    }
-  }
-
-  private saveTabIdInCache() {     
-      sessionStorage.setItem('tabId', JSON.stringify(this.tabId));
-      return this.tabId;
   }
 
   private getSkillsJson(): Observable<any> {
     return this.httpClient.get(this.dataPath + StaticConf.skillsInfo);
+  }
+
+  private getSkillsJsonFromS3(): Observable<any> {
+    return this.s3Service.readJsonFile(StaticConf.dataPath, StaticConf.skillsInfo);
   }
 
   // Method to convert a single skill object to SkillModel
@@ -125,7 +53,7 @@ export class DataProviderService {
 
   // Adjusted getSkills method
   getSkills(): Observable<Array<SkillModel>> {
-    return this.getSkillsJson().pipe(
+    return this.getSkillsJsonFromS3().pipe(
       map(data => this.mapSkills(data.skillsObjects))
     );
   }
@@ -145,20 +73,23 @@ export class DataProviderService {
   }
 
   getMainBlocksInfo(): Observable<Array<MainBlockModel>> {
-    return this.getMainBlockJson().pipe(
+    return this.getMainBlockJsonFromS3().pipe(
       map(data => this.mapMainBlock(data.MainBlocs))
     );
   }
 
   getMainBlockById(id: number): Observable<MainBlockModel> {
-    return this.getMainBlockJson().pipe(
+    return this.getMainBlockJsonFromS3().pipe(
       map((data: any) => data.MainBlocs.find((block: any) => block.id === id)),
       map((block: any) => this.convertToMainBlockModel(block))
     );
   }
 
   private getMainBlockJson(): Observable<any> {
-    return this.httpClient.get(this.dataPath + this.fileName);
+    return this.httpClient.get(this.dataPath + this.appStateService.fileName);
+  }
+  private getMainBlockJsonFromS3(): Observable<any> {
+    return this.s3Service.readJsonFile(StaticConf.dataPath, this.appStateService.fileName);
   }
 
   private mapMainBlock(mainBlockObjects: any[]): MainBlockModel[] {

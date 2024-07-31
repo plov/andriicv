@@ -2,10 +2,11 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { MainBlockModel } from '../../models/main-block/main-block-model';
 import { Router } from '@angular/router';
-import { DataProviderService } from '../../data-provider/data-provider.service';
+import { DataProviderService } from '../../services/data-provider/data-provider.service';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { environment } from '../../../environments/environment';
 import { StaticConf } from '../../staticconf';
+import { AppStateService } from '../../services/state-servises/app-state-service.service';
 
 @Component({
   selector: 'app-main-block-item',
@@ -27,7 +28,7 @@ export class MainBlockItemComponent implements OnInit {
   location: string = "";
   icon: string = "";
 
-  constructor(private router: Router, private dataProviderService: DataProviderService, private sanitizer:DomSanitizer) { }
+  constructor(private router: Router, private dataProviderService: DataProviderService, private sanitizer:DomSanitizer, private appStateService: AppStateService) { }
 
   ngOnInit(): void {
 
@@ -50,8 +51,8 @@ export class MainBlockItemComponent implements OnInit {
 
   onButtonClick(): void {
     
-    this.dataProviderService.setBlockId(this.id);
-    this.dataProviderService.updateState();
+    this.appStateService.setBlockId(this.id);
+    this.appStateService.updateState();
     //this.router.navigate(['/app-full-description']);
   }
 

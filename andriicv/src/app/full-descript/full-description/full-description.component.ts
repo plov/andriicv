@@ -2,12 +2,13 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MainBlockModel } from '../../models/main-block/main-block-model';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule, RouterOutlet } from '@angular/router';
-import { HeaderComponent } from '../../header/header.component';
-import { SkillsBlockComponent } from '../../skills-block/skills-block.component';
-import { DataProviderService } from '../../data-provider/data-provider.service';
+import { HeaderComponent } from '../../main-page/header/header.component';
+import { SkillsBlockComponent } from '../../skils/skills-block/skills-block.component';
+import { DataProviderService } from '../../services/data-provider/data-provider.service';
 import { StaticConf } from '../../staticconf';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { environment } from '../../../environments/environment';
+import { AppStateService } from '../../services/state-servises/app-state-service.service';
 
 @Component({
   selector: 'app-full-description',
@@ -34,13 +35,13 @@ export class FullDescriptionComponent implements OnInit {
   icon: string = "";
   links: Array<string> = [];
 
-  constructor(private router: Router, private dataProviderService: DataProviderService, private sanitizer:DomSanitizer) {
+  constructor(private router: Router, private dataProviderService: DataProviderService, private sanitizer:DomSanitizer, private appStateService: AppStateService) {
 
   }
 
   ngOnInit(): void {
     console.log("---FullDescriptionComponent");
-    let id = this.dataProviderService.getBlockId();
+    let id = this.appStateService.getBlockId();
     if (id !== 0) {
       this.dataProviderService.getMainBlockById(id).subscribe(data => {
         this.mainBlockInfo = data;
@@ -65,8 +66,8 @@ export class FullDescriptionComponent implements OnInit {
   }
 
   onButtonClick(): void {
-    this.dataProviderService.setBlockId(0);
-    this.dataProviderService.updateState();
+    this.appStateService.setBlockId(0);
+    this.appStateService.updateState();
     //this.router.navigate(['/']);
   }
 
