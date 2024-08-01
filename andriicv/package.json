@@ -4,7 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "set-env": "ts-node set-environment.ts",
+    "build": "npm run set-env && ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:andriicv": "node dist/andriicv/server/server.mjs"
