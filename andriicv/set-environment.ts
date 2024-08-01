@@ -1,5 +1,5 @@
-import * as fs from 'fs';
-import * as path from 'path';
+const fs = require('fs');
+const path = require('path');
 
 // List of environment variables that you want to replace
 const envVariables = ['ACCESS_KEY', 'SECRET_KEY'];
