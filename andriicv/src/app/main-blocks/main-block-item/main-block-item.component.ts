@@ -2,11 +2,11 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { MainBlockModel } from '../../models/main-block/main-block-model';
 import { Router } from '@angular/router';
-import { DataProviderService } from '../../services/data-provider/data-provider.service';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { environment } from '../../../environments/environment';
 import { StaticConf } from '../../staticconf';
 import { AppStateService } from '../../services/state-servises/app-state-service.service';
+import { MainBlockProviderService } from '../../services/data-provider/main-block-provider.service';
 
 @Component({
   selector: 'app-main-block-item',
@@ -28,7 +28,7 @@ export class MainBlockItemComponent implements OnInit {
   location: string = "";
   icon: string = "";
 
-  constructor(private router: Router, private dataProviderService: DataProviderService, private sanitizer:DomSanitizer, private appStateService: AppStateService) { }
+  constructor(private router: Router, private MainBlockProvider: MainBlockProviderService, private sanitizer:DomSanitizer, private appStateService: AppStateService) { }
 
   ngOnInit(): void {
 

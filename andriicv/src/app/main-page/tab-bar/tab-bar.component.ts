@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { DataProviderService } from '../../services/data-provider/data-provider.service';
 import { AppStateService } from '../../services/state-servises/app-state-service.service';
 
 @Component({

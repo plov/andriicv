@@ -4,11 +4,11 @@ import { CommonModule } from '@angular/common';
 import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from '../../main-page/header/header.component';
 import { SkillsBlockComponent } from '../../skils/skills-block/skills-block.component';
-import { DataProviderService } from '../../services/data-provider/data-provider.service';
 import { StaticConf } from '../../staticconf';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { environment } from '../../../environments/environment';
 import { AppStateService } from '../../services/state-servises/app-state-service.service';
+import { MainBlockProviderService } from '../../services/data-provider/main-block-provider.service';
 
 @Component({
   selector: 'app-full-description',
@@ -35,7 +35,7 @@ export class FullDescriptionComponent implements OnInit {
   icon: string = "";
   links: Array<string> = [];
 
-  constructor(private router: Router, private dataProviderService: DataProviderService, private sanitizer:DomSanitizer, private appStateService: AppStateService) {
+  constructor(private router: Router, private MainBlockProvider: MainBlockProviderService, private sanitizer:DomSanitizer, private appStateService: AppStateService) {
 
   }
 
@@ -43,7 +43,7 @@ export class FullDescriptionComponent implements OnInit {
     console.log("---FullDescriptionComponent");
     let id = this.appStateService.getBlockId();
     if (id !== 0) {
-      this.dataProviderService.getMainBlockById(id).subscribe(data => {
+      this.MainBlockProvider.getMainBlockById(id).subscribe(data => {
         this.mainBlockInfo = data;
         this.title = this.mainBlockInfo.blockName;
         this.time = this.mainBlockInfo.years;
