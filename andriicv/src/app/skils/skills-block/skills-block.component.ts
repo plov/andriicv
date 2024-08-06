@@ -1,11 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { SkillItemComponent } from '../skill-item/skill-item.component';
-import { DataProviderService } from '../../services/data-provider/data-provider.service';
+import { SkillProviderService } from '../../services/data-provider/skill-provider.service';
 import { SkillModel } from '../../models/skills/skill-model';
 import { Subscription } from 'rxjs';
 import { StaticConf } from '../../staticconf';
 import { AppStateService } from '../../services/state-servises/app-state-service.service';
+import { MainBlockProviderService } from '../../services/data-provider/main-block-provider.service';
+
 
 @Component({
   selector: 'app-skills-block',
@@ -16,10 +18,13 @@ import { AppStateService } from '../../services/state-servises/app-state-service
 })
 export class SkillsBlockComponent implements OnInit {
   skillsModel: Array<SkillModel> = [];
+  private MainBlockProvider: MainBlockProviderService;
+  private skillProvider: SkillProviderService;
   private subscription: Subscription = new Subscription();
 
-  constructor(private dataProviderService: DataProviderService, private appStateService: AppStateService) { 
-    this.dataProviderService = dataProviderService;
+  constructor(private skillProviderService: SkillProviderService, private dataProviderService: MainBlockProviderService, private appStateService: AppStateService) { 
+    this.MainBlockProvider = dataProviderService;
+    this.skillProvider = skillProviderService;
   }
 
   ngOnInit() {
@@ -31,14 +36,14 @@ export class SkillsBlockComponent implements OnInit {
       this.appStateService.componenState.subscribe(() => {
         const blockId = this.appStateService.getBlockId();
         if (blockId === 0) {
-          this.dataProviderService.getSkills().subscribe(data => {
+          this.skillProvider.getSkills().subscribe(data => {
             this.skillsModel = data;
           });
         } else {
           this.dataProviderService.getMainBlockById(blockId).subscribe(data => {
             const mainBlockInfo = data;
             const skillsIds = mainBlockInfo.skillsIds;
-            this.dataProviderService.getSkillsByIds(skillsIds).subscribe(data => {
+            this.skillProvider.getSkillsByIds(skillsIds).subscribe(data => {
               this.skillsModel = data;
             });
           });

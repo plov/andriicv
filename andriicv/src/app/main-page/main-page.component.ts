@@ -11,10 +11,10 @@ import { HeaderComponent } from './header/header.component';
 import { SkillsBlockComponent } from '../skils/skills-block/skills-block.component';
 import { MainBlocksContainerComponent } from '../main-blocks/main-blocks-container/main-blocks-container.component';
 import { DynamicComponentDirective } from '../directives/dynamic-component.directive';
-import { DataProviderService } from '../services/data-provider/data-provider.service';
 import { FullDescriptionComponent } from '../full-descript/full-description/full-description.component';
 import { TabBarComponent } from './tab-bar/tab-bar.component';
 import { AppStateService } from '../services/state-servises/app-state-service.service';
+import { MainBlockProviderService } from '../services/data-provider/main-block-provider.service';
 
 
 @Component({
@@ -36,7 +36,7 @@ import { AppStateService } from '../services/state-servises/app-state-service.se
 export class MainPageComponent {
   @ViewChild(DynamicComponentDirective, { static: true }) dynamicComponent!: DynamicComponentDirective;
 
-  constructor(private dataProviderService: DataProviderService, private appStateService: AppStateService) { }
+  constructor(private dataProviderService: MainBlockProviderService, private appStateService: AppStateService) { }
 
   ngOnInit() {
     this.loadDynamicComponent(MainBlocksContainerComponent);
@@ -47,7 +47,6 @@ export class MainPageComponent {
     const viewContainerRef = this.dynamicComponent.viewContainerRef;
     viewContainerRef.clear();
     const componentRef = viewContainerRef.createComponent(component);
-    // componentRef.instance.someInput = 'Your data';
   }
 
   private subscribeToData() {
@@ -58,6 +57,5 @@ export class MainPageComponent {
       else
         this.loadDynamicComponent(MainBlocksContainerComponent)
     });
-
   }
 }
