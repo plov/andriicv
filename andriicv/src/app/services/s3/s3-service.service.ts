@@ -24,7 +24,6 @@ export class S3Service {
         secretAccessKey: environment.secretAccessKey
       }
     });
-    console.log('accessKeyId: ', environment.accessKeyId);
   }
 
   async listFiles() {
