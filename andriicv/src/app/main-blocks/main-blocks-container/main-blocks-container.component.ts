@@ -2,8 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { MainBlockItemComponent } from '../main-block-item/main-block-item.component';
 import { MainBlockModel } from '../../models/main-block/main-block-model';
-import { StaticConf } from '../../staticconf';
-import { MainBlockProviderService } from '../../services/data-provider/main-block-provider.service';
+import { MainBlockProviderService } from '../../services/data-providers/main-block-provider.service';
 
 @Component({
   selector: 'app-main-blocks-container',

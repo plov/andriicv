@@ -6,7 +6,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { environment } from '../../../environments/environment';
 import { StaticConf } from '../../staticconf';
 import { AppStateService } from '../../services/state-servises/app-state-service.service';
-import { MainBlockProviderService } from '../../services/data-provider/main-block-provider.service';
+import { MainBlockProviderService } from '../../services/data-providers/main-block-provider.service';
 
 @Component({
   selector: 'app-main-block-item',
