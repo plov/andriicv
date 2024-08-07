@@ -1,10 +1,9 @@
 
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, map, from } from 'rxjs';
+import { Observable, map, from } from 'rxjs';
 import { SkillModel } from '../../models/skills/skill-model';
 import { environment } from '../../../environments/environment';
 import { StaticConf } from '../../staticconf';
-import { MainBlockModel } from '../../models/main-block/main-block-model';
 import { S3Service } from '../s3/s3-service.service';
 import { AppStateService } from '../state-servises/app-state-service.service';
 
@@ -29,7 +28,6 @@ export class SkillProviderService {
     return this.s3Service.readJsonFile(StaticConf.dataPath, StaticConf.skillsInfo);
   }
 
-  // Method to convert a single skill object to SkillModel
   private convertToSkillModel(skillObj: any): SkillModel {
     const skillModel = new SkillModel();
     skillModel.id = skillObj.id;
@@ -46,7 +44,6 @@ export class SkillProviderService {
     return this.sortSkillsByViewOrder(skillsObjects.map(this.convertToSkillModel.bind(this)));
   }
 
-  // Adjusted getSkills method
   getSkills(): Observable<Array<SkillModel>> {
     return this.getSkillsJsonFromS3().pipe(
       map(data => this.mapSkills(data.skillsObjects))

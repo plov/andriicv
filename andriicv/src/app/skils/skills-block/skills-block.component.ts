@@ -1,12 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { SkillItemComponent } from '../skill-item/skill-item.component';
-import { SkillProviderService } from '../../services/data-provider/skill-provider.service';
+import { SkillProviderService } from '../../services/data-providers/skill-provider.service';
 import { SkillModel } from '../../models/skills/skill-model';
 import { Subscription } from 'rxjs';
-import { StaticConf } from '../../staticconf';
 import { AppStateService } from '../../services/state-servises/app-state-service.service';
-import { MainBlockProviderService } from '../../services/data-provider/main-block-provider.service';
+import { MainBlockProviderService } from '../../services/data-providers/main-block-provider.service';
 
 
 @Component({
