@@ -1,11 +1,8 @@
 <div class="description-block">
     <button (click)="onButtonClick()">back</button>
-    <div *ngIf="iconHide" class="image-container">
-        <img src="{{ icon }}" alt=" " class="icon">
-    </div>
-
     <div class="flex-container">
         <div class="left">
+            <img src="{{ icon }}" alt=" " class="icon">
             <p *ngIf="nameHide"><em>Name: </em></p>
             <p *ngIf="nameHide" class="shift">{{title}}</p>
             <p *ngIf="positionHide"><em>Position: </em></p>

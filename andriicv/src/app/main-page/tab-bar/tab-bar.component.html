@@ -1,5 +1,4 @@
 <div class="tabs-bar">
-    <!--<div class="title">Experience:</div>-->
     <div *ngFor="let tab of tabs">
         <button class="tab-button" (click)="selectTab(tab.id)" [class.active]="tab.id === activeTab">
             {{ tab.title }}
