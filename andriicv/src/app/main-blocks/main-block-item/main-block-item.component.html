@@ -1,20 +1,30 @@
 <div class="main-block-item">
-    <div><img src="{{ icon }}" alt=" " class="icon"> </div>
+    <div *ngIf="iconHide"> <img src="{{ icon }}" alt=" " class="icon"> </div>
     <div class="flex-container">
-        <p class="left"><em>Company: </em><strong>{{title}}</strong></p>
-        <p class="right"><em>Years: </em><strong>{{time}}</strong></p>
+        <div class="left">
+            <p *ngIf="nameHide"><em>Name: </em></p>
+            <p *ngIf="nameHide" class="shift">{{title}}</p>
+            <p *ngIf="positionHide"><em>Position: </em></p>
+            <p *ngIf="positionHide" class="shift">{{position}}</p>
+        </div>
+        <div class="right">
+            <p *ngIf="yearsHide"><strong>{{time}}</strong></p>
+            <p *ngIf="locationHide"><strong>{{location}}</strong></p>
+        </div>
     </div>
-
-    <div>
-        <p *ngIf="position !== ''" ><em>Position: </em><strong>{{position}}</strong></p>
-        <p><em>Country: </em><strong>{{location}}</strong></p>
-    </div>
-
-    <div>
+    <div *ngIf="shortDeskriptHide">
         <p><em>Description:</em></p>
-        <p [innerHTML]="description"></p>
+        <p class="shift" [innerHTML]="description"></p>
     </div>
-    <div class="more">
+    <div *ngIf="responsobilityHide">
+        <p><em>Responsobility:</em></p>
+        <p class="shift" [innerHTML]="responsobility"></p>
+    </div>
+    <div *ngIf="achievementsHide">
+        <p ><em>Achievements:</em></p>
+        <p class="shift" [innerHTML]="achievements"></p>
+    </div>
+    <div *ngIf="moreBtnHide" class="more">
         <button (click)="onButtonClick()">more</button>
     </div>
 </div>

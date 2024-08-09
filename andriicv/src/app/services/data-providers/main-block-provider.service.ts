@@ -52,15 +52,28 @@ export class MainBlockProviderService {
     mainBlockModel.id = mainBlockObj.id;
     mainBlockModel.blockViewOrder = mainBlockObj.blockViewOrder;
     mainBlockModel.blockName = mainBlockObj.blockName;
-    mainBlockModel.blockType = mainBlockObj.blockType;
     mainBlockModel.years = mainBlockObj.years;
     mainBlockModel.position = mainBlockObj.position;
+    mainBlockModel.responsobility = Array.isArray(mainBlockObj.responsobility ) ? mainBlockObj.responsobility.join('') : mainBlockObj.responsobility;
+    mainBlockModel.achievements = Array.isArray(mainBlockObj.achievements) ? mainBlockObj.achievements.join('') : mainBlockObj.achievements;
     mainBlockModel.shortDescription = Array.isArray(mainBlockObj.shortDescription) ? mainBlockObj.shortDescription.join('') : mainBlockObj.shortDescription;
     mainBlockModel.longDescription = Array.isArray(mainBlockObj.longDescription) ? mainBlockObj.longDescription.join('') : mainBlockObj.longDescription;
     mainBlockModel.location = mainBlockObj.location;
     mainBlockModel.skillsIds = mainBlockObj.skillsIds;
     mainBlockModel.icon = mainBlockObj.icon;
     mainBlockModel.links = mainBlockObj.links;
+
+    mainBlockModel.nameHide = mainBlockObj.blockName.length > 0;
+    mainBlockModel.yearsHide = mainBlockObj.years.length > 0;
+    mainBlockModel.positionHide = mainBlockObj.position.length > 0;
+    mainBlockModel.responsobilityHide = mainBlockObj.responsobility.length > 0;
+    mainBlockModel.achievementsHide = mainBlockObj.achievements.length > 0;
+    mainBlockModel.shortDeskriptHide = mainBlockObj.shortDescription.length > 0;
+    mainBlockModel.longDescriptionHide = mainBlockObj.longDescription.length > 0;
+    mainBlockModel.locationHide = mainBlockObj.location.length > 0;
+    mainBlockModel.iconHide = mainBlockObj.icon.length > 0;
+    mainBlockModel.linksHide = mainBlockObj.links.length > 0;
+
     return mainBlockModel;
   }
 

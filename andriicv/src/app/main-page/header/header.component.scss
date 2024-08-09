@@ -26,10 +26,9 @@
 
 .header-text {
     font-size: 1.0rem;
-    font-weight: 700;
+    font-weight: 500;
     font-family: 'Verdana', sans-serif;
     color: #3b2727;
-    font-weight: bold;
     width: 70%;
     margin: 0 auto;
     text-align: left;
@@ -51,6 +50,18 @@
         display: block;
         margin: auto;
         width: 200px;
+    }
+    .header-text {
+        font-size: 0.7 rem;
+        font-weight: 450;
+        font-family: 'Verdana', sans-serif;
+        color: #3b2727;
+        width: 95%;
+        margin: 0 auto;
+        margin-left: 5px;
+        text-align: left;
+        padding: 10px;
+        box-sizing: border-box;
     }
 }
 

@@ -29,11 +29,24 @@ export class FullDescriptionComponent implements OnInit {
   title: string = "";
   time: string = "";
   description: SafeHtml = "";
+  responsobility: SafeHtml = "";
+  achievements: SafeHtml = "";
   lDescription: SafeHtml = "";
   position: string = "";
   location: string = "";
   icon: string = "";
   links: Array<string> = [];
+
+  nameHide: boolean = false;
+  yearsHide: boolean = false;
+  positionHide: boolean = false;
+  moreBtnHide: boolean = false;
+  responsobilityHide: boolean = false;
+  achievementsHide: boolean = false;
+  shortDeskriptHide: boolean = false;
+  locationHide: boolean = false;
+  iconHide: boolean = false;
+  linksHide: boolean = false;
 
   constructor(private router: Router, private MainBlockProvider: MainBlockProviderService, private sanitizer:DomSanitizer, private appStateService: AppStateService) {
 
@@ -48,18 +61,29 @@ export class FullDescriptionComponent implements OnInit {
         this.title = this.mainBlockInfo.blockName;
         this.time = this.mainBlockInfo.years;
         this.description = this.sanitizer.bypassSecurityTrustHtml(this.mainBlockInfo.shortDescription);
+        this.responsobility = this.sanitizer.bypassSecurityTrustHtml(this.mainBlockInfo.responsobility);
+        this.achievements = this.sanitizer.bypassSecurityTrustHtml(this.mainBlockInfo.achievements);
         this.lDescription = this.sanitizer.bypassSecurityTrustHtml(this.mainBlockInfo.longDescription);
         this.position = this.mainBlockInfo.position;
         this.location = this.mainBlockInfo.location;
         this.icon = this.mainBlockInfo.icon;
         this.links = this.mainBlockInfo.links;
 
+        this.nameHide = this.mainBlockInfo.nameHide;
+        this.yearsHide = this.mainBlockInfo.yearsHide;
+        this.positionHide = this.mainBlockInfo.positionHide;
+        this.moreBtnHide = this.mainBlockInfo.longDescriptionHide;
+        this.responsobilityHide = this.mainBlockInfo.responsobilityHide;
+        this.achievementsHide = this.mainBlockInfo.achievementsHide;
+        this.shortDeskriptHide = this.mainBlockInfo.shortDeskriptHide;
+        this.locationHide = this.mainBlockInfo.locationHide;
+        this.iconHide = this.mainBlockInfo.iconHide;
+        this.linksHide = this.mainBlockInfo.linksHide;
+
         if (environment.production) {
-          console.log("environment.production: " + environment.production)
           this.icon = StaticConf.s3backetPath + StaticConf.iconsPath + this.icon;
         } else {
           this.icon = StaticConf.localPath + StaticConf.iconsPath + this.icon;
-          console.log("icon path "+this.icon);
         }
       });
     }
