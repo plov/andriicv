@@ -50,24 +50,20 @@ p {
     display: flex;
     justify-content: end;
     align-items: center;
+    margin-bottom: 5px;
     
 }
 .block-one { margin-top: 10px;}
 .block-three { margin-top: 5px;}
 
 .icon {
-    margin-right: 5px;
+    margin: 15px;
     width: 80px;
     height: 80px;
+    border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.image-container {
-    display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: flex-start; /* Align to the top */
-    width: 100%; /* Ensure the image container takes full width */
-}
 
 @media screen and (max-width: 768px) and (orientation: portrait) {
     .description-block {
@@ -78,16 +74,23 @@ p {
         align-items: center;
         padding: 10px;
         margin: 0;
-        border: style_vars.$border-style;
+        border: style_vars.$border-style-mob;
         font-weight: 400;
         border-radius: 8px;
         font-size: 0.7rem;
     }
-    .flex-container {
-        display: block;
-        justify-content: colinm; 
-        align-items: center; 
+
+    .icon {
+        margin: 0;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        margin-left: 5px;
+        width: 60px;
+        height: 60px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     }
+
     .shift{
         margin: 0;
         margin-left: 5px;

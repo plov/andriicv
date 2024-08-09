@@ -12,7 +12,6 @@
     justify-content: space-between;
     align-items: center;
     padding-top: 20px;
-    padding-bottom: 20px;
 }
 
 .yellow-line {
@@ -32,13 +31,14 @@
     width: 70%;
     margin: 0 auto;
     text-align: left;
-    padding: 10px;
+    padding-left: 20px;
     box-sizing: border-box;
 }
 
 @media screen and (max-width: 768px) and (orientation: portrait) {
     .header_bg {
         min-height: 100px;
+        padding-top: 20;
     }
 
     .yellow-line {
@@ -49,19 +49,19 @@
     .image-container {
         display: block;
         margin: auto;
-        width: 200px;
+        width: 250px;
+        padding-top: 20px;
     }
+
     .header-text {
-        font-size: 0.7 rem;
+        font-size: 0.6rem;
         font-weight: 450;
         font-family: 'Verdana', sans-serif;
         color: #3b2727;
-        width: 95%;
-        margin: 0 auto;
-        margin-left: 5px;
         text-align: left;
-        padding: 10px;
-        box-sizing: border-box;
+        width: 98%;
+        padding-left: 10px;
+
     }
 }
 

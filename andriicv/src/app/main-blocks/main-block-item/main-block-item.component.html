@@ -1,7 +1,7 @@
 <div class="main-block-item">
-    <div *ngIf="iconHide"> <img src="{{ icon }}" alt=" " class="icon"> </div>
     <div class="flex-container">
         <div class="left">
+            <div *ngIf="iconHide"> <img src="{{ icon }}" alt=" " class="icon"> </div>
             <p *ngIf="nameHide"><em>Name: </em></p>
             <p *ngIf="nameHide" class="shift">{{title}}</p>
             <p *ngIf="positionHide"><em>Position: </em></p>
