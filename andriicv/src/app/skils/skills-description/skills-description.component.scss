@@ -24,6 +24,11 @@
   font-size: 1.0rem;
   font-weight: 500;
 }
+@media screen and (max-width: 768px) and (orientation: portrait) {
+  .modal-content {
+    width: 80%;
+  }
+}
 
 .modal-header,
 .modal-footer {

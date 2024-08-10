@@ -54,7 +54,6 @@ export class FullDescriptionComponent implements OnInit {
     private appStateService: AppStateService,
     private locationStrategy: LocationStrategy) {
       history.pushState(null, "", window.location.href);
-      // check if back or forward button is pressed.
       this.locationStrategy.onPopState(() => {
         history.pushState(null, "", window.location.href);
         this.onBackBtnClick();
