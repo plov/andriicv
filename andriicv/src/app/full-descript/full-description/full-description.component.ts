@@ -1,6 +1,6 @@
-import { Component, Input, OnInit, HostListener } from '@angular/core';
+import { Component, Input, OnInit} from '@angular/core';
 import { MainBlockModel } from '../../models/main-block/main-block-model';
-import { CommonModule, PlatformLocation } from '@angular/common';
+import { CommonModule, LocationStrategy,} from '@angular/common';
 import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from '../../main-page/header/header.component';
 import { SkillsBlockComponent } from '../../skils/skills-block/skills-block.component';
@@ -52,20 +52,16 @@ export class FullDescriptionComponent implements OnInit {
     private MainBlockProvider: MainBlockProviderService,
     private sanitizer:DomSanitizer,
     private appStateService: AppStateService,
-    private platformLocation: PlatformLocation) {
+    private locationStrategy: LocationStrategy) {
+      history.pushState(null, "", window.location.href);
+      // check if back or forward button is pressed.
+      this.locationStrategy.onPopState(() => {
+        history.pushState(null, "", window.location.href);
+        this.onBackBtnClick();
+      });
   }
 
   ngOnInit(): void {
-
-    this.platformLocation.onPopState(() => {
-      const confirmationMessage = 'Are you sure you want to leave this page?';
-    if (confirm(confirmationMessage)) {
-      this.router.navigate(['/']);
-    } else {
-      history.pushState(null, '', location.href);
-    }
-    });
-
     let id = this.appStateService.getBlockId();
     if (id !== 0) {
       this.MainBlockProvider.getMainBlockById(id).subscribe(data => {
@@ -101,13 +97,6 @@ export class FullDescriptionComponent implements OnInit {
     }
   }
 
-  @HostListener('window:popstate', ['$event'])
-  onPopState(event: PopStateEvent) {
-    console.log('Back button pressed');
-    //this.onBackBtnClick();
-    this.router.navigate(['/']);
-    event.preventDefault(); 
-  }
 
   onBackBtnClick(): void {
     this.appStateService.setBlockId(0);
