@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, HostListener } from '@angular/core';
 import { MainBlockModel } from '../../models/main-block/main-block-model';
 import { CommonModule, PlatformLocation } from '@angular/common';
 import { Router, RouterModule, RouterOutlet } from '@angular/router';
@@ -49,17 +49,13 @@ export class FullDescriptionComponent implements OnInit {
   linksHide: boolean = false;
 
   constructor(private router: Router,
-     private MainBlockProvider: MainBlockProviderService,
-     private sanitizer:DomSanitizer,
-     private appStateService: AppStateService,
-     private platformLocation: PlatformLocation) {
-
+    private MainBlockProvider: MainBlockProviderService,
+    private sanitizer:DomSanitizer,
+    private appStateService: AppStateService,
+    private platformLocation: PlatformLocation) {
   }
 
   ngOnInit(): void {
-    this.platformLocation.onPopState(() => {
-      this.onBackBtnClick();
-    });
 
     let id = this.appStateService.getBlockId();
     if (id !== 0) {
@@ -94,6 +90,13 @@ export class FullDescriptionComponent implements OnInit {
         }
       });
     }
+  }
+
+  @HostListener('window:popstate', ['$event'])
+  onPopState(event: PopStateEvent) {
+    console.log('Back button pressed');
+    this.onBackBtnClick();
+    event.preventDefault();
   }
 
   onBackBtnClick(): void {
