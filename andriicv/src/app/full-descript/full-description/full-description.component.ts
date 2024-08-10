@@ -57,6 +57,15 @@ export class FullDescriptionComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.platformLocation.onPopState(() => {
+      const confirmationMessage = 'Are you sure you want to leave this page?';
+    if (confirm(confirmationMessage)) {
+      this.router.navigate(['/']);
+    } else {
+      history.pushState(null, '', location.href);
+    }
+    });
+
     let id = this.appStateService.getBlockId();
     if (id !== 0) {
       this.MainBlockProvider.getMainBlockById(id).subscribe(data => {
@@ -96,13 +105,8 @@ export class FullDescriptionComponent implements OnInit {
   onPopState(event: PopStateEvent) {
     console.log('Back button pressed');
     //this.onBackBtnClick();
-    event.preventDefault();
-    const confirmationMessage = 'Are you sure you want to leave this page?';
-    if (confirm(confirmationMessage)) {
-      this.onBackBtnClick();
-    } else {
-      history.pushState(null, '', location.href);
-    }
+    this.router.navigate(['/']);
+    event.preventDefault(); 
   }
 
   onBackBtnClick(): void {
