@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MainBlockModel } from '../../models/main-block/main-block-model';
-import { CommonModule } from '@angular/common';
+import { CommonModule, PlatformLocation } from '@angular/common';
 import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from '../../main-page/header/header.component';
 import { SkillsBlockComponent } from '../../skils/skills-block/skills-block.component';
@@ -48,12 +48,17 @@ export class FullDescriptionComponent implements OnInit {
   iconHide: boolean = false;
   linksHide: boolean = false;
 
-  constructor(private router: Router, private MainBlockProvider: MainBlockProviderService, private sanitizer:DomSanitizer, private appStateService: AppStateService) {
+  constructor(private router: Router,
+     private MainBlockProvider: MainBlockProviderService,
+     private sanitizer:DomSanitizer,
+     private appStateService: AppStateService,
+     private platformLocation: PlatformLocation) {
 
   }
 
   ngOnInit(): void {
-    console.log("---FullDescriptionComponent");
+    this.platformLocation.onPopState(this.onBackBtnClick);
+    
     let id = this.appStateService.getBlockId();
     if (id !== 0) {
       this.MainBlockProvider.getMainBlockById(id).subscribe(data => {
@@ -89,7 +94,7 @@ export class FullDescriptionComponent implements OnInit {
     }
   }
 
-  onButtonClick(): void {
+  onBackBtnClick(): void {
     this.appStateService.setBlockId(0);
     this.appStateService.updateState();
     //this.router.navigate(['/']);
