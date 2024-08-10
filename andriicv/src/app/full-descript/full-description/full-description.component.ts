@@ -57,8 +57,10 @@ export class FullDescriptionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.platformLocation.onPopState(this.onBackBtnClick);
-    
+    this.platformLocation.onPopState(() => {
+      this.onBackBtnClick();
+    });
+
     let id = this.appStateService.getBlockId();
     if (id !== 0) {
       this.MainBlockProvider.getMainBlockById(id).subscribe(data => {
