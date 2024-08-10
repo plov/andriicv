@@ -97,6 +97,9 @@ export class FullDescriptionComponent implements OnInit {
     console.log('Back button pressed');
     this.onBackBtnClick();
     event.preventDefault();
+    if(confirm("Are you sure you want to leave this page?")) {
+      return true;
+    }
   }
 
   onBackBtnClick(): void {
