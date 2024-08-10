@@ -95,10 +95,13 @@ export class FullDescriptionComponent implements OnInit {
   @HostListener('window:popstate', ['$event'])
   onPopState(event: PopStateEvent) {
     console.log('Back button pressed');
-    this.onBackBtnClick();
+    //this.onBackBtnClick();
     event.preventDefault();
-    if(confirm("Are you sure you want to leave this page?")) {
-      return true;
+    const confirmationMessage = 'Are you sure you want to leave this page?';
+    if (confirm(confirmationMessage)) {
+      this.onBackBtnClick();
+    } else {
+      history.pushState(null, '', location.href);
     }
   }
 
