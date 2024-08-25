@@ -14,7 +14,7 @@ export class ApiService {
 
   // Method to send a POST request to save a name
   addViwer(viwer: ViwerModel): Observable<any> {
-    const url = `${this.apiUrl}/names`;
+    const url = `${this.apiUrl}`;
     const headers = new HttpHeaders({ 'Content-Type': 'application/json', "Access-Control-Allow-Origin": "*", "Access-Control-Allow-Methods": "POST, GET, OPTIONS, DELETE", "Access-Control-Allow-Headers": "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With" });
     const body = { name: viwer.name, email: viwer.email, pincode: viwer.pincode, expirationDate: viwer.expirationDate, lastVisited: viwer.lastVisited };
     return this.http.post(url, body, { headers: headers });
