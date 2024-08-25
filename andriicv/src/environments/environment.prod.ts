@@ -2,5 +2,8 @@ export const environment = {
     production: true,
     assets : "s3://andriicv-bucket/",
     accessKeyId: "",
-    secretAccessKey: ""
+    secretAccessKey: "",
+    region: "",
+    userPoolId: "",
+    userPoolWebClientId: ""
 };

@@ -1,14 +1,14 @@
 import { Component, Input, OnInit} from '@angular/core';
-import { MainBlockModel } from '../../models/main-block/main-block-model';
+import { MainBlockModel } from '../models/main-block/main-block-model';
 import { CommonModule, LocationStrategy,} from '@angular/common';
 import { Router, RouterModule, RouterOutlet } from '@angular/router';
-import { HeaderComponent } from '../../main-page/header/header.component';
-import { SkillsBlockComponent } from '../../skils/skills-block/skills-block.component';
-import { StaticConf } from '../../staticconf';
+import { HeaderComponent } from '../main-page/header/header.component';
+import { SkillsBlockComponent } from '../skils/skills-block/skills-block.component';
+import { StaticConf } from '../staticconf';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { environment } from '../../../environments/environment';
-import { AppStateService } from '../../services/state-servises/app-state-service.service';
-import { MainBlockProviderService } from '../../services/data-providers/main-block-provider.service';
+import { environment } from '../../environments/environment';
+import { AppStateService } from '../services/state-servises/app-state-service.service';
+import { MainBlockProviderService } from '../services/data-providers/main-block-provider.service';
 
 @Component({
   selector: 'app-full-description',

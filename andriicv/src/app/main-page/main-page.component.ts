@@ -11,7 +11,7 @@ import { HeaderComponent } from './header/header.component';
 import { SkillsBlockComponent } from '../skils/skills-block/skills-block.component';
 import { MainBlocksContainerComponent } from '../main-blocks/main-blocks-container/main-blocks-container.component';
 import { DynamicComponentDirective } from '../directives/dynamic-component.directive';
-import { FullDescriptionComponent } from '../full-descript/full-description/full-description.component';
+import { FullDescriptionComponent } from '../full-descript/full-description.component';
 import { TabBarComponent } from './tab-bar/tab-bar.component';
 import { AppStateService } from '../services/state-servises/app-state-service.service';
 import { MainBlockProviderService } from '../services/data-providers/main-block-provider.service';
