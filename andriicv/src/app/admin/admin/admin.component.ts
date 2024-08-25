@@ -30,6 +30,6 @@ export class AdminComponent {
   onSend(){
     console.log("AdminComponent.onSend() called");
     this.api.addViwer(new ViwerModel(this.name, this.email, this.pincode, this.expirationDate, "" )).subscribe( data => {
-        console.log("AdminComponent.onSend() data: " + data)}); 
+        console.log("AdminComponent.onSend() data: " + data.toString());}); 
   }
 }

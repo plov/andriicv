@@ -11,6 +11,6 @@ export class ViwerModel {
         this.pincode = pincode;
         this.expirationDate = expirationDate;
         this.createdDate = new Date().toISOString();
-        this.lastVisited = lastVisited;
+        this.lastVisited = "8-14-2025";
     }
 }

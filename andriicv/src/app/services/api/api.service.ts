@@ -20,7 +20,7 @@ export class ApiService {
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Methods": "POST, GET, OPTIONS, DELETE",
       "Access-Control-Allow-Headers": "*" });
-    const body = { name: viwer.name, email: viwer.email, pincode: viwer.pincode, expirationDate: viwer.expirationDate, lastVisited: viwer.lastVisited };
+    const body = { name: viwer.name, email: viwer.email, pin: viwer.pincode, expiration: viwer.expirationDate, visit: viwer.lastVisited };
     return this.http.post(url, body, { headers: headers });
   }
 
