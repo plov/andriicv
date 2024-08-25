@@ -9,5 +9,13 @@ import { RouterModule, RouterOutlet } from '@angular/router';
   styleUrl: './loginform.component.scss'
 })
 export class LoginformComponent {
+  isVisible: boolean = false;
 
+  open() {
+    this.isVisible = true;
+  }
+
+  close() {
+    this.isVisible = false;
+  }
 }
