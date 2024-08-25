@@ -1,0 +1,8 @@
+<div> 
+    <input email type="text" placeholder="Enter email" [(ngModel)]="email">
+    <input name type="text" placeholder="Enter name" [(ngModel)]="name">
+    <input name type="text" placeholder="Press to generate pin" [(ngModel)]="pincode">
+    <input name type="text" placeholder="expiration date" [(ngModel)]="expirationDate">
+    <button (click)="onGenerate()">generate</button>
+    <button (click)="onSend()">send</button>
+</div>

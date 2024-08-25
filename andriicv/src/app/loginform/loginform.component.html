@@ -1,4 +1,12 @@
-<p>loginform works!</p>
-<nav>
-<a class="button" routerLink="/app-header">home</a>
-</nav>
+<div class="modal-backdrop" *ngIf="isVisible">
+    <button class="xbtn" (click)="close()">x</button>
+    <div>
+    <label for="email">Email:</label>
+    <input type="email" id="email" (blur)="fetchStoredHash(email.value)" #email>
+  </div>
+  <div>
+    <label for="pin">PIN:</label>
+    <input type="password" id="pin" [(ngModel)]="userPin">
+  </div>
+  <button (click)="validatePin()">Validate PIN</button>
+</div>

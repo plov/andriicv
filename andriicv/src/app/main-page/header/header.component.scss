@@ -31,8 +31,24 @@
     width: 70%;
     margin: 0 auto;
     text-align: left;
-    padding-left: 20px;
+    padding-left: 40px;
     box-sizing: border-box;
+}
+.pin-code-block{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+.pin-input{
+    width: 200px;
+    height: 50px;
+    font-size: 1.8rem;
+    text-align: center;
+    margin: 0 10px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    outline: none;
 }
 
 @media screen and (max-width: 768px) and (orientation: portrait) {
@@ -67,6 +83,17 @@
         word-break: break-word;
         white-space: normal;
 
+    }
+
+    .pin-input{
+        width: 100px;
+        height: 30px;
+        font-size: 0.9rem;
+        text-align: center;
+        margin: 0 10px;
+        border: 1px solid #000;
+        border-radius: 5px;
+        outline: none;
     }
 }
 
