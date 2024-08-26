@@ -12,7 +12,7 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  // Method to send a POST request to save a name
+  // Method to send a POST request to save a new viwer
   addViwer(viwer: ViwerModel): Observable<any> {
     const url = `${this.apiUrl}`;
     const headers = new HttpHeaders({ 
@@ -20,9 +20,17 @@ export class ApiService {
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Methods": "POST, GET, OPTIONS, DELETE",
       "Access-Control-Allow-Headers": "*" });
-    const body = { name: viwer.name, email: viwer.email, pin: viwer.pincode, expiration: viwer.expirationDate, visit: viwer.lastVisited };
+      const body = JSON.stringify({
+        body: JSON.stringify({
+          name: viwer.name,
+          email: viwer.email,
+          pin: viwer.hash,
+          expiration: viwer.expirationDate,
+          visit: viwer.lastVisited
+        })
+      });
     return this.http.post(url, body, { headers: headers });
   }
 
-  // Add more methods as needed Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token
+  // Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token
 }
