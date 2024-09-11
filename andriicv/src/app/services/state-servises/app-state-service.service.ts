@@ -13,6 +13,8 @@ export class AppStateService {
 
   private tabId: string = "";
   private blockId: number = 0;
+  private isLogin: boolean = false;
+  private isAnmin: boolean = false;
 
   updateState() {
     this.dataSource.next(this.componenState);

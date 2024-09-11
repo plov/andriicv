@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { AuthService } from './services/auth/auth.service';
 
 
 @Component({
@@ -15,6 +16,9 @@ import { CommonModule } from '@angular/common';
 })
 export class AppComponent {
 
-  constructor() {
+    constructor(private authService: AuthService) {
+      this.authService.checkLoginState();
    }
+
+
 }

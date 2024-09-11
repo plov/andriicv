@@ -1,8 +1,45 @@
-<div> 
+<div class="pin-code-block" *ngIf="(authService.isLoggedIn() | async) && (authService.isAdministrator() | async) ; else notLoggedIn">
+  <div class="createViewer">
     <input email type="text" placeholder="Enter email" [(ngModel)]="email">
     <input name type="text" placeholder="Enter name" [(ngModel)]="name">
     <input name type="text" placeholder="Press to generate pin" [(ngModel)]="pincode">
-    <input name type="text" placeholder="expiration date" [(ngModel)]="expirationDate">
+    <input name type="text" placeholder="expiration days" [(ngModel)]="expirationDays">
     <button (click)="onGenerate()">generate</button>
     <button (click)="onSend()">send</button>
+  </div>
+
+  <div class="showViewers">
+
+    <h1>Viewers</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Select</th>
+          <th>Id</th>
+          <th>Email</th>
+          <th>Name</th>
+          <th>Created</th>
+          <th>Last Visited</th>
+          <th>Expiration Days</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let viewer of viewers">
+          <td><input type="checkbox" (change)="onCheckboxChange($event, viewer.id)"></td>
+          <td>{{viewer.id}}</td>
+          <td>{{viewer.email}}</td>
+          <td>{{viewer.name}}</td>
+          <td>{{viewer.createdDate}}</td>
+          <td>{{viewer.lastVisited}}</td>
+          <td>{{viewer.expirationDays}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <button (click)="onDeleteViewer()">Delete</button>
+    <button (click)="onRefreshViewer()">Refresh</button>
+  </div>
 </div>
+<ng-template #notLoggedIn>
+  <!-- Content for non-authenticated users -->
+  <p>404</p>
+</ng-template>

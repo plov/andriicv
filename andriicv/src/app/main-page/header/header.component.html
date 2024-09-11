@@ -1,13 +1,17 @@
 <div class="header-container">
     <div class="header_bg">
-        <div class="sine-in"> <p>Sine In </p> </div>
+        <!--<div class="sine-in"> <p>Sine In </p> </div>-->
         <img class="image-container" [src]="logoPath" alt={{title}}>
-        <div class="pin-code-block">
-            <input class="pin-input" type="text" placeholder="Enter pin code">
-            <button>Check</button>
+        <div class="pin-code-block" *ngIf="!(authService.isLoggedIn() | async) ; else notLoggedIn">
+            <input class="pin-input" type="text" placeholder="Enter pin code" [(ngModel)]="pin">
+            <button (click)="onSubmitClick()">Submit</button>
         </div>
+        <ng-template #notLoggedIn>
+            <!-- Content for non-authenticated users -->
+            <p>Welcome!</p>
+        </ng-template>
         <div class="header-text">
             <p>{{summaryText}}</p>
+        </div>
+        <div class="yellow-line"> </div>
     </div>
-    <div class="yellow-line"> </div>
-</div>
