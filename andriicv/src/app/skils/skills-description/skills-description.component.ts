@@ -20,7 +20,7 @@ export class SkillsDescriptionComponent implements OnInit {
 
   ngOnInit() {
     if (environment.production) {
-      console.log("environment.production: " + environment.production)
+      //console.log("environment.production: " + environment.production)
       this.image = StaticConf.s3backetPath + StaticConf.iconsPath + this.image;
     } else {
       this.image = StaticConf.localPath + StaticConf.iconsPath + this.image;

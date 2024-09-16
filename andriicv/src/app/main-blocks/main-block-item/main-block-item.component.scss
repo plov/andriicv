@@ -3,7 +3,7 @@
 .main-block-item {
     display: block;
     width: 80%;
-    background: #def5fc;
+    background: rgba(14, 14, 17, 1);
     justify-content: space-between;
     align-items: center;
     padding: 10px;
@@ -61,7 +61,8 @@ p {
     .main-block-item {
         display: block;
         width: 95%;
-        background: #def5fc;
+        background: rgba(14, 14, 17, 1);
+
         justify-content: space-between;
         align-items: center;
         padding: 3px;

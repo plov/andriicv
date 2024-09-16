@@ -1,9 +1,10 @@
 .header_bg {
     display: flex;
     flex-direction: column;
-    background: #fbcb67;
-    min-width: 400px;
-    min-height: 300px;
+    //background: #fbcb67;
+    background: rgba(14, 14, 17, 1);
+    //min-width: 400px;
+    //min-height: 300px;
 }
 
 .header-content {
@@ -14,14 +15,14 @@
     padding-top: 20px;
 }
 
-.yellow-line {
-    display: flex;
-    background: #fff361;
-    height: 10px;
-    width: 100%;
-    margin-top: 0px;
-    margin-bottom: 0px;
-}
+//.yellow-line {
+//    display: flex;
+//   background: #fff361;
+//    height: 10px;
+//    width: 100%;
+//    margin-top: 0px;
+//    margin-bottom: 0px;
+//}
 
 .header-text {
     font-size: 1.0rem;
@@ -35,6 +36,13 @@
     box-sizing: border-box;
 }
 .pin-code-block{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.infoblock{
     display: flex;
     justify-content: center;
     align-items: center;

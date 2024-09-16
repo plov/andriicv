@@ -1,6 +1,7 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
 import { ViewerModel } from '../../models/viewer/viewer-model';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthResponse, Viewer } from './auth-response';
@@ -25,18 +26,18 @@ export class ApiService {
     const url = `${this.apiUrl + this.viewerResource}`;
     const token = this.getStoredToken();
     const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': token, });
-      const body = JSON.stringify({
-        body: JSON.stringify({
-          name: viewer.name,
-          email: viewer.email,
-          pin: viewer.pincode,
-          created: viewer.createdDate,
-          expiration: viewer.expirationDays,
-          visit: viewer.lastVisited,
-          type: viewer.type
-        })
-      });
-    return this.http.post(url, body, { headers: headers, withCredentials: true});
+    const body = JSON.stringify({
+      body: JSON.stringify({
+        name: viewer.name,
+        email: viewer.email,
+        pin: viewer.pincode,
+        created: viewer.createdDate,
+        expiration: viewer.expirationDays,
+        visit: viewer.lastVisited,
+        type: viewer.type
+      })
+    });
+    return this.http.post(url, body, { headers: headers, withCredentials: true });
   }
 
   getViwers(): Observable<any> {
@@ -44,7 +45,7 @@ export class ApiService {
     const token = this.getStoredToken();
     const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': token, });
     console.log('headers:', headers);
-    return this.http.get(url, { headers: headers, withCredentials: true});
+    return this.http.get(url, { headers: headers, withCredentials: true });
   }
 
   deleteViewers(viewers: ViewerModel[]): Observable<any> {
@@ -52,34 +53,39 @@ export class ApiService {
     const token = this.getStoredToken();
     const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': token, });
     const body = JSON.stringify({ viewers });
-    return this.http.post(url, body, { headers: headers, withCredentials: true});
+    return this.http.post(url, body, { headers: headers, withCredentials: true });
   }
 
-  getViwerByPin(pinCode:string): Observable<AuthResponse> {
+  login(pinCode: string): Observable<AuthResponse> {
     const url = `${this.apiUrl + this.viewerByPinResource}`;
     const token = this.getStoredToken();
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json',});
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', });
     const body = JSON.stringify({
       body: JSON.stringify({ pin: pinCode })
     });
-    return this.http.post<AuthResponse>(url, body, { headers: headers, withCredentials: true})
-    .pipe(
-      tap(response => {
-        const parsedBody = JSON.parse(response.body) as { viewer: Viewer, token: string };;
-        const token = parsedBody.token;
-        const viewerType  = parsedBody.viewer.type;
-        const cookieValue = JSON.stringify({ token, viewerType });
-        
-      this.cookieService.set('Authorization', cookieValue, { path: '/', secure: true, sameSite: 'Lax' });
-    })
-  );
+    return this.http.post<AuthResponse>(url, body, { headers: headers, withCredentials: true })
+      .pipe(
+        tap(response => {
+          console.log('login response:', response);
+          if (response.statusCode === 200) {
+          
+              const parsedBody = JSON.parse(response.body) as { viewer: Viewer, token: string };
+              const token = parsedBody.token;
+              const viewerType = parsedBody.viewer.type;
+              const cookieValue = JSON.stringify({ token, viewerType });
+
+              this.cookieService.set('Authorization', cookieValue, { path: '/', secure: true, sameSite: 'Lax' });
+          }
+        })
+      );
   }
 
-  validateToken(token:string): Observable<any> {
-    const url = this.apiUrl+this.validateTokenResource;
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': token,});
+  validateToken(token: string): Observable<any> {
+    const url = this.apiUrl + this.validateTokenResource;
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': token, });
     const body = JSON.stringify({
-      body: JSON.stringify({ token: token })});
+      body: JSON.stringify({ token: token })
+    });
     return this.http.post(url, body, { headers: headers, withCredentials: true });
   }
 

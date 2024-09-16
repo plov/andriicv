@@ -1,41 +1,106 @@
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-    font-size: 18px;
-    text-align: left;
-  }
-  
-  th, td {
-    padding: 12px;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  th {
-    background-color: #f2f2f2;
-  }
-  
-  tr:hover {
-    background-color: #f5f5f5;
-  }
-  
-  .createViewer {
-    margin-bottom: 20px;
-  }
-  
-  .createViewer input {
-    margin-right: 10px;
-    padding: 8px;
-    font-size: 16px;
-  }
-  
-  .createViewer button {
-    padding: 8px 12px;
-    font-size: 16px;
-    margin-right: 10px;
-    cursor: pointer;
-  }
-  
-  .createViewer button:hover {
-    background-color: #ddd;
-  }
+/* admin.component.scss */
+
+/* General styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+/* Container for the create viewer form */
+.createViewer {
+  background-color: #fff;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.createViewer input[type="text"] {
+  width: calc(100% - 22px);
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.createViewer button {
+  padding: 10px 20px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+
+.createViewer button:hover {
+  background-color: #0056b3;
+}
+
+/* Logout button */
+div > button {
+  padding: 10px 20px;
+  margin: 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #dc3545;
+  color: #fff;
+  cursor: pointer;
+}
+
+div > button:hover {
+  background-color: #c82333;
+}
+
+/* Container for the viewers table */
+.showViewers {
+  background-color: #fff;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.showViewers h1 {
+  margin-top: 0;
+}
+
+.showViewers table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.showViewers th, .showViewers td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.showViewers th {
+  background-color: #f8f9fa;
+}
+
+.showViewers tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.showViewers input[type="checkbox"] {
+  cursor: pointer;
+}
+
+.showViewers button {
+  padding: 10px 20px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #28a745;
+  color: #fff;
+  cursor: pointer;
+}
+
+.showViewers button:hover {
+  background-color: #218838;
+}

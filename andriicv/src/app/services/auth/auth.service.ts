@@ -10,6 +10,7 @@ import { CookieService } from 'ngx-cookie-service';
 export class AuthService {
   private authState = new BehaviorSubject<boolean>(false);
   private isAdmin = new BehaviorSubject<boolean>(false);
+  public needReload = false;
 
   constructor(private apiService: ApiService, private cookieService: CookieService) {
     this.checkLoginState();
@@ -56,7 +57,13 @@ export class AuthService {
   }
 
   logout(): void {
-    localStorage.removeItem('authToken');
+    this.cookieService.delete('Authorization');
+    this.needReload = true;
     this.authState.next(false);
+
+  }
+
+  isAuthenticated(): boolean {
+    return this.cookieService.check('Authorization') || !!localStorage.getItem('authToken') || !!sessionStorage.getItem('authToken');
   }
 }

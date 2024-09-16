@@ -1,4 +1,6 @@
-<div class="pin-code-block" *ngIf="(authService.isLoggedIn() | async) && (authService.isAdministrator() | async) ; else notLoggedIn">
+<div class="pin-code-block"
+  *ngIf="(authService.isLoggedIn() | async) && (authService.isAdministrator() | async) ; else notLoggedIn">
+  <div><button (click)="onLogout()">Logout</button></div>
   <div class="createViewer">
     <input email type="text" placeholder="Enter email" [(ngModel)]="email">
     <input name type="text" placeholder="Enter name" [(ngModel)]="name">

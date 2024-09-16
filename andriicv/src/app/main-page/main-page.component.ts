@@ -15,6 +15,7 @@ import { FullDescriptionComponent } from '../full-descript/full-description/full
 import { TabBarComponent } from './tab-bar/tab-bar.component';
 import { AppStateService } from '../services/state-servises/app-state-service.service';
 import { MainBlockProviderService } from '../services/data-providers/main-block-provider.service';
+import { AuthService } from '../services/auth/auth.service';
 
 
 @Component({
@@ -36,11 +37,15 @@ import { MainBlockProviderService } from '../services/data-providers/main-block-
 export class MainPageComponent {
   @ViewChild(DynamicComponentDirective, { static: true }) dynamicComponent!: DynamicComponentDirective;
 
-  constructor(private dataProviderService: MainBlockProviderService, private appStateService: AppStateService) { }
+  constructor(private dataProviderService: MainBlockProviderService, private appStateService: AppStateService, public authService: AuthService) { }
 
   ngOnInit() {
     this.loadDynamicComponent(MainBlocksContainerComponent);
     this.subscribeToData();
+    if (!this.authService.isAuthenticated() && this.authService.needReload) {
+      this.authService.needReload = false;
+      window.location.reload();
+    }
   }
 
   loadDynamicComponent(component: any) {

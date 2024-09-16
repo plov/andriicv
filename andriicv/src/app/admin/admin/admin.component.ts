@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { RouterModule, RouterOutlet } from '@angular/router';
+import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ApiService } from '../../services/api/api.service';
 import { ViewerModel } from '../../models/viewer/viewer-model';
@@ -25,7 +25,9 @@ export class AdminComponent implements OnInit {
   selectedViewerIds: Set<number> = new Set<number>();
 
   api: ApiService;
-  constructor(private apiSersices: ApiService, public authService: AuthService) {
+  constructor(private apiSersices: ApiService,
+    public authService: AuthService,
+    private router: Router) {
     this.api = apiSersices;
   }
 
@@ -131,5 +133,10 @@ export class AdminComponent implements OnInit {
   }
   onRefreshViewer() {
     this.getViwers();
+  }
+
+  onLogout() {
+    this.authService.logout();
+    this.router.navigate(['/']);
   }
 }

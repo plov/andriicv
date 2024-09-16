@@ -1,15 +1,32 @@
 <div class="header-container">
     <div class="header_bg">
-        <!--<div class="sine-in"> <p>Sine In </p> </div>-->
+        <app-loginform #loginFormModal></app-loginform>
         <img class="image-container" [src]="logoPath" alt={{title}}>
-        <div class="pin-code-block" *ngIf="!(authService.isLoggedIn() | async) ; else notLoggedIn">
-            <input class="pin-input" type="text" placeholder="Enter pin code" [(ngModel)]="pin">
-            <button (click)="onSubmitClick()">Submit</button>
+        <div class="pin-code-block" *ngIf="(authService.isLoggedIn() | async) ; else notLoggedIn">
+            <div *ngIf="(authService.isAdministrator() | async)">
+                <button (click)="onAnminClick()">admin panel</button>
+            </div>
+            <div>
+                {{phone}}
+            </div>
+            <div>
+                {{email}}
+            </div>
+            <div>
+                <ul>
+                    <li *ngFor="let link of links"> <a href="{{link.url}}" target="_blank">{{link.name}}</a></li>
+                </ul>
+            </div>
         </div>
         <ng-template #notLoggedIn>
-            <!-- Content for non-authenticated users -->
-            <p>Welcome!</p>
+            <div class="pin-code-block">
+                <!--<input class="pin-input" type="text" placeholder="Enter pin code" [(ngModel)]="pin">
+                <button (click)="onSubmitClick()">Submit</button>-->
+                <button (click)="onLoginClick()">Login</button>
+            </div>
+            <div class="infoblock">{{location}}</div>
         </ng-template>
+
         <div class="header-text">
             <p>{{summaryText}}</p>
         </div>
