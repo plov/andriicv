@@ -3,6 +3,7 @@
 
 body {
   margin: 0;
+  background: rgba(14, 14, 17, 1);
 }
 
 .common-button {
@@ -33,17 +34,17 @@ body {
   cursor: pointer;
 }
 
-.commonXButton {
+.common-x-button {
   width: 25px;
   height: 25px;
   background: none;
-  box-shadow: inset 1px 2px 3px rgba(248, 247, 247, 0.2);
+  //box-shadow: inset 1px 2px 3px rgba(248, 247, 247, 0.2);
   border: none;
-  border-radius: 30px;
+  //border-radius: 30px;
   cursor: pointer;
 }
 
-.commonXButton:active {
+.common-x-button:active {
   width: 25px;
   height: 25px;
   background: none;

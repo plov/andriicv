@@ -1,45 +1,49 @@
-.header_bg {
+.header-container {
     display: flex;
     flex-direction: column;
-    //background: #fbcb67;
-    background: rgba(14, 14, 17, 1);
-    //min-width: 400px;
-    //min-height: 300px;
-}
-
-.header-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 20px;
-}
-
-//.yellow-line {
-//    display: flex;
-//   background: #fff361;
-//    height: 10px;
-//    width: 100%;
-//    margin-top: 0px;
-//    margin-bottom: 0px;
-//}
-
-.header-text {
-    font-size: 1.0rem;
-    font-weight: 500;
-    font-family: 'Verdana', sans-serif;
-    color: #3b2727;
-    width: 70%;
-    margin: 0 auto;
-    text-align: left;
-    padding-left: 40px;
-    box-sizing: border-box;
-}
-.pin-code-block{
-    display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    //background: #000;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    margin-top: 80px;
+    width: 50%;
+    min-height: 300px;
+    //border: 1px solid #383737;
+}
+
+.summary-text {
+    font-family: Manrope;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 23.8px;
+    letter-spacing: 0.02em;
+    text-align: left;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0 auto;
+    padding-left: 5px;
+    box-sizing: border-box;
     margin-top: 20px;
+}
+
+.info-labels-main-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-top: 20px;
+}
+
+.info-label-container {
+    display: flex;
+    margin-bottom: 5px; 
+}
+
+.app-info-label {
+    margin-right: 5px; 
 }
 
 .infoblock{
@@ -48,64 +52,63 @@
     align-items: center;
     margin-top: 20px;
 }
-.pin-input{
-    width: 200px;
-    height: 50px;
-    font-size: 1.8rem;
-    text-align: center;
-    margin: 0 10px;
-    border: 1px solid #000;
-    border-radius: 5px;
-    outline: none;
+
+.name{
+    font-family: Manrope;
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 43.71px;
+    letter-spacing: 0.01em;
+    text-align: left;
+    color: rgba(255, 255, 255, 1);
+    margin: 0 auto;
+    padding-left: 5px;
+    box-sizing: border-box;
+    margin-top: auto;
+}
+
+.position{
+    font-family: Manrope;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 21.86px;
+    letter-spacing: 0.02em;
+    text-align: left;    
+    color: rgba(255, 255, 255, 1);
+    margin: 0 auto;
+    padding-left: 5px;
+    box-sizing: border-box;
+    margin-top: auto;
+}
+
+.common-button.selected {
+    margin-top: 20px;
+    padding: 8px 20px 8px 20px;
+    gap: 8px;
+    opacity: 0px;
+    font-family: Manrope, sans-serif;
+    font-weight: 600;
+    color: #000000;
+
+    background:
+        radial-gradient(54.68% 100% at 50% 0%, rgba(255, 255, 255, 0.5) 0%, rgba(0, 0, 0, 0.5) 100%),
+        rgba(255, 185, 7, 0.7);
+    background-blend-mode: overlay;
+
+    border: 1px solid;
+    border-image-source: linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 51.23%);
 }
 
 @media screen and (max-width: 768px) and (orientation: portrait) {
-    .header_bg {
-        min-height: 100px;
-        padding-top: 20;
-    }
-
-    .yellow-line {
-        height: 5px;
-        width: 100%;
-    }
-
-    .image-container {
-        display: block;
-        margin: auto;
-        width: 250px;
-        padding-top: 20px;
-    }
-
-    .header-text {
-        font-size: 0.6rem;
-        font-weight: 450;
-        font-family: 'Verdana', sans-serif;
-        color: #3b2727;
-        text-align: left;
-        width: 98%;
-        padding-left: 10px;
-        padding-right: 15px;
-        overflow-wrap: break-word;
-        word-wrap: break-word;
-        word-break: break-word;
-        white-space: normal;
-
-    }
-
-    .pin-input{
-        width: 100px;
-        height: 30px;
-        font-size: 0.9rem;
+    .header {
+        width: 95%;
+        padding-top: 10px;
+      }
+    
+      .header-text {
+        font-size: 12px;
+        line-height: 20px;
         text-align: center;
-        margin: 0 10px;
-        border: 1px solid #000;
-        border-radius: 5px;
-        outline: none;
-    }
-}
-
-.image-container {
-    display: block;
-    margin: auto;
+        padding-left: 0;
+      }
 }

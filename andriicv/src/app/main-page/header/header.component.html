@@ -1,34 +1,54 @@
 <div class="header-container">
-    <div class="header_bg">
+    <div class="header">
         <app-loginform #loginFormModal></app-loginform>
-        <img class="image-container" [src]="logoPath" alt={{title}}>
-        <div class="pin-code-block" *ngIf="(authService.isLoggedIn() | async) ; else notLoggedIn">
+        <div>
+            <div class="name">
+                <label>{{name}} {{lastName}}</label>
+            </div>
+            <div class="position">
+                <label>{{position}}</label>
+            </div>
+        </div>
+        <div class="info-labels-main-container">
+            <div class="info-label-container">
+                <app-info-label [iconSrc]="status.iconSrc" [textValue]="status.textValue"
+                    [isBlurred]="status.isBlurred"></app-info-label>
+            </div>
+            <div class="info-label-container">
+                <app-info-label [iconSrc]="phone.iconSrc" [textValue]="phone.textValue"
+                    [isBlurred]="phone.isBlurred"></app-info-label>
+                <app-info-label [iconSrc]="email.iconSrc" [textValue]="email.textValue"
+                    [isBlurred]="email.isBlurred"></app-info-label>
+            </div>
+            <div class="info-label-container">
+                <app-info-label [iconSrc]="location.iconSrc" [textValue]="location.textValue"
+                    [isBlurred]="location.isBlurred"></app-info-label>
+                <app-info-label [iconSrc]="address.iconSrc" [textValue]="address.textValue"
+                    [isBlurred]="address.isBlurred"></app-info-label>
+                <app-info-label [iconSrc]="USstatus.iconSrc" [textValue]="USstatus.textValue"
+                    [isBlurred]="USstatus.isBlurred"></app-info-label>
+            </div>
+            <div class="info-label-container">
+                <app-info-label *ngFor="let link of links" [iconSrc]="link.icon" [linkValue]="link.url"
+                    [linkText]="link.name" [isBlurred]="link.isBlurred">
+                </app-info-label>
+            </div>
+        </div>
+        <div *ngIf="(authService.isLoggedIn() | async) ; else notLoggedIn">
             <div *ngIf="(authService.isAdministrator() | async)">
-                <button (click)="onAnminClick()">admin panel</button>
-            </div>
-            <div>
-                {{phone}}
-            </div>
-            <div>
-                {{email}}
-            </div>
-            <div>
-                <ul>
-                    <li *ngFor="let link of links"> <a href="{{link.url}}" target="_blank">{{link.name}}</a></li>
-                </ul>
+                <button class="common-button selected"  (click)="onAnminClick()">admin panel</button>
             </div>
         </div>
         <ng-template #notLoggedIn>
-            <div class="pin-code-block">
-                <!--<input class="pin-input" type="text" placeholder="Enter pin code" [(ngModel)]="pin">
-                <button (click)="onSubmitClick()">Submit</button>-->
-                <button (click)="onLoginClick()">Login</button>
+            <div>
+                <button class="common-button selected"  (click)="onLoginClick()">Enter PIN code</button>
             </div>
-            <div class="infoblock">{{location}}</div>
+
         </ng-template>
 
-        <div class="header-text">
+        <div class="summary-text">
+            <h2>Summary</h2>
             <p>{{summaryText}}</p>
         </div>
-        <div class="yellow-line"> </div>
     </div>
+</div>

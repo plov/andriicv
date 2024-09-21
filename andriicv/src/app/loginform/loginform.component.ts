@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ApiService } from '../services/api/api.service';
+import { StaticConf } from '../staticconf';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-loginform',
@@ -18,13 +20,17 @@ export class LoginformComponent implements OnInit, AfterViewInit {
   pin: string = "";
   comment: string = "Enter your pin code";
   labelColor: string = "white";
+  xIcon = StaticConf.localPath + StaticConf.xIcon;
 
   @ViewChildren('pinInput') pinInputs!: QueryList<ElementRef>;
 
-  constructor(private api: ApiService) { }
+  constructor(private api: ApiService) { 
+    if (environment.production) {
+      this.xIcon = StaticConf.s3backetPath + StaticConf.xIcon;
+    }
+  }
 
   ngOnInit(): void {
-
   }
 
   ngAfterViewInit(): void {
@@ -82,7 +88,7 @@ export class LoginformComponent implements OnInit, AfterViewInit {
       });
     });
   }
- 
+
   open() {
     this.isVisible = true;
     setTimeout(() => this.initializeFields(), 0);
