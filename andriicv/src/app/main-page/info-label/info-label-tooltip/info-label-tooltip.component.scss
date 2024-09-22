@@ -1,10 +1,16 @@
 .tooltip {
   position: absolute;
-  bottom: 100%; /* Position above the parent element */
+  bottom: 100%;
   left: 50%;
   transform: translateX(-50%);
   background-color: white;
   color: black;
+  font-family: Manrope, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 23.8px;
+  letter-spacing: 0.02em;
+  text-align: center;
   padding: 8px;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -14,7 +20,7 @@
 
 .tooltip-arrow {
   position: absolute;
-  top: 100%; /* Position at the bottom of the tooltip */
+  top: 100%;
   left: 50%;
   transform: translateX(-50%);
   width: 0;
@@ -22,4 +28,30 @@
   border-left: 8px solid transparent;
   border-right: 8px solid transparent;
   border-top: 8px solid white;
+}
+
+@media (max-width: 768px) and (orientation: portrait) {
+  .tooltip {
+    left: auto;
+    right: auto;
+    transform: none;
+    max-width: 90%; /* Ensure tooltip doesn't exceed screen width */
+    white-space: normal; /* Allow text to wrap */
+  }
+
+  .tooltip-left {
+    left: 5%;
+    transform: translateX(0);
+  }
+
+  .tooltip-right {
+    right: 5%;
+    transform: translateX(0);
+  }
+
+  .tooltip-arrow {
+    left: auto;
+    right: auto;
+    transform: none;
+  }
 }

@@ -36,19 +36,21 @@
         </div>
         <div *ngIf="(authService.isLoggedIn() | async) ; else notLoggedIn">
             <div *ngIf="(authService.isAdministrator() | async)">
-                <button class="common-button selected"  (click)="onAnminClick()">admin panel</button>
+                <button class="common-button selected" (click)="onAnminClick()">admin panel</button>
             </div>
         </div>
         <ng-template #notLoggedIn>
             <div>
-                <button class="common-button selected"  (click)="onLoginClick()">Enter PIN code</button>
+                <button class="common-button selected" (click)="onLoginClick()">Enter PIN code</button>
             </div>
 
         </ng-template>
 
         <div class="summary-text">
             <h2>Summary</h2>
-            <p>{{summaryText}}</p>
+            <div class="text-container">
+                {{summaryText}}
+            </div>
         </div>
     </div>
 </div>

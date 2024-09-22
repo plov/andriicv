@@ -1,4 +1,4 @@
-(function() {
+(function () {
   if (typeof global === 'undefined') {
     (window as any).global = window;
   }
@@ -9,13 +9,14 @@ import { Component, ViewChild } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import { SkillsBlockComponent } from '../skils/skills-block/skills-block.component';
-import { MainBlocksContainerComponent } from '../main-blocks/main-blocks-container/main-blocks-container.component';
 import { DynamicComponentDirective } from '../directives/dynamic-component.directive';
 import { FullDescriptionComponent } from '../full-descript/full-description/full-description.component';
 import { TabBarComponent } from './tab-bar/tab-bar.component';
 import { AppStateService } from '../services/state-servises/app-state-service.service';
 import { MainBlockProviderService } from '../services/data-providers/main-block-provider.service';
 import { AuthService } from '../services/auth/auth.service';
+import { HorizontalScrollComponent } from './horizontal-scroll/horizontal-scroll.component';
+
 
 
 @Component({
@@ -26,10 +27,10 @@ import { AuthService } from '../services/auth/auth.service';
     RouterModule,
     HeaderComponent,
     SkillsBlockComponent,
-    MainBlocksContainerComponent,
     FullDescriptionComponent,
     DynamicComponentDirective,
-    TabBarComponent
+    TabBarComponent,
+    HorizontalScrollComponent
   ],
   templateUrl: './main-page.component.html',
   styleUrl: './main-page.component.scss'
@@ -40,15 +41,17 @@ export class MainPageComponent {
   constructor(private dataProviderService: MainBlockProviderService, private appStateService: AppStateService, public authService: AuthService) { }
 
   ngOnInit() {
-    this.loadDynamicComponent(MainBlocksContainerComponent);
-    this.subscribeToData();
     if (!this.authService.isAuthenticated() && this.authService.needReload) {
       this.authService.needReload = false;
       window.location.reload();
     }
+
+    this.loadDynamicComponent(HorizontalScrollComponent);
+    this.subscribeToData();
   }
 
   loadDynamicComponent(component: any) {
+    console.log("loadDynamicComponent");
     const viewContainerRef = this.dynamicComponent.viewContainerRef;
     viewContainerRef.clear();
     const componentRef = viewContainerRef.createComponent(component);
@@ -60,7 +63,7 @@ export class MainPageComponent {
       if (blockId !== 0)
         this.loadDynamicComponent(FullDescriptionComponent)
       else
-        this.loadDynamicComponent(MainBlocksContainerComponent)
+        this.loadDynamicComponent(HorizontalScrollComponent)
     });
   }
 }

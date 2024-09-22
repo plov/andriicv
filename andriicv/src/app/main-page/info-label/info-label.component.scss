@@ -9,7 +9,7 @@
   padding-right: 15px;
   border-radius: 16px;
   background: rgba(255, 255, 255, 0.04);
-  font-family: Manrope;
+  font-family: Manrope, sans-serif;
   font-size: 14px;
   font-weight: 500;
   line-height: 23.8px;
@@ -59,7 +59,7 @@
   cursor: default;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 768px) and (orientation: portrait) {
   .info-card {
     padding: 3px;
     padding-left: 10px;

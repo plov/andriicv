@@ -1,19 +1,8 @@
-<div class="skills-block">
-    <table class="skills-table">
-        <thead>
-            <tr>
-                <th><div class="title">Skills:</div></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let skill of skillsModel">
-                <td>
-                    <app-skill-item [skillValue] = "skill.skillName" 
-                    [skillUsages] = "skill.skillUsages" 
-                    [skillYears] = "skill.skillYears"
-                    [skillimage] = "skill.image"></app-skill-item>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+<div class="container">
+    <div class="skills-block">
+        <div *ngFor="let skill of skillsModel">
+            <app-skill-item [skillValue]="skill.skillName" [skillUsages]="skill.skillUsages"
+                [skillYears]="skill.skillYears" [skillimage]="skill.image"></app-skill-item>
+        </div>
+    </div>
 </div>
