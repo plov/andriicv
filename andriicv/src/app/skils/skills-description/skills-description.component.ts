@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { StaticConf } from '../../staticconf';
 import { environment } from '../../../environments/environment';
+import { ModalService } from '../../services/modal-servise/modal.service';
 
 @Component({
   selector: 'app-skills-description',
@@ -15,23 +16,30 @@ export class SkillsDescriptionComponent implements OnInit {
   @Input() image: string = '';
 
   isVisible: boolean = false;
+  isOpen = false;
 
-  constructor() { }
+  constructor(private modalService: ModalService) { }
 
   ngOnInit() {
     if (environment.production) {
-      //console.log("environment.production: " + environment.production)
       this.image = StaticConf.s3backetPath + StaticConf.iconsPath + this.image;
     } else {
       this.image = StaticConf.localPath + StaticConf.iconsPath + this.image;
     }
+    this.modalService.modalState$.subscribe(state => {
+      this.isOpen = state;
+    });
   }
 
-  open() {
+  closeModal() {
+    this.modalService.closeModal();
+  }
+
+  /*open() {
     this.isVisible = true;
   }
 
   close() {
     this.isVisible = false;
-  }
+  }*/
 }

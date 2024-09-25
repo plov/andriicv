@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-info-label-tooltipl',
+  selector: 'app-info-label-tooltip',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './info-label-tooltip.component.html',

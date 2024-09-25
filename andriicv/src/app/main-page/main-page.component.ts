@@ -51,7 +51,6 @@ export class MainPageComponent {
   }
 
   loadDynamicComponent(component: any) {
-    console.log("loadDynamicComponent");
     const viewContainerRef = this.dynamicComponent.viewContainerRef;
     viewContainerRef.clear();
     const componentRef = viewContainerRef.createComponent(component);

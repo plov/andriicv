@@ -23,7 +23,6 @@ export class HorizontalScrollComponent implements OnInit {
 
   ngOnInit() {
     this.mainBlockProvider.getMainBlocksInfo().subscribe(data => {
-      console.log(" main block data ");
       this.contentArray = data;
       this.loadComponent();
     });
@@ -51,7 +50,6 @@ export class HorizontalScrollComponent implements OnInit {
 
   updateTransform() {
     const width = this.scrollWrapper.nativeElement.clientWidth;
-    console.log("Updating transform: ", `translateX(-${this.currentIndex * width}px)`);
     this.scrollWrapper.nativeElement.style.transform = `translateX(-${this.currentIndex * width}px)`;
     this.updateContainerHeight();
   }

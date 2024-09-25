@@ -11,8 +11,8 @@
             </div>
         </div>
     </div>
-    <app-info-label-tooltipl *ngIf="showTooltip" [text]="'Please log in with your PIN code'">
-    </app-info-label-tooltipl>
+    <app-info-label-tooltip *ngIf="showTooltip" [text]="'Please log in with your PIN code'">
+    </app-info-label-tooltip>
     <div *ngIf="isBlurred">
         <img class="info-icon info-card-image" [src]="lockIcon">
     </div>

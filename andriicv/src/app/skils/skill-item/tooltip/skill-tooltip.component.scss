@@ -30,6 +30,11 @@
   border-top: 8px solid white;
 }
 
+.skill-icon{
+  width: 25px;
+  height: 25px;
+}
+
 @media (max-width: 768px) and (orientation: portrait) {
   .tooltip {
     left: auto;
@@ -38,7 +43,7 @@
     max-width: 90%; 
     white-space: normal;
   }
-  
+
   .tooltip-left {
     left: 5%;
     transform: translateX(0);

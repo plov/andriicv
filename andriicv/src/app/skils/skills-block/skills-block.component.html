@@ -1,8 +1,10 @@
 <div class="container">
     <div class="skills-block">
-        <div *ngFor="let skill of skillsModel">
-            <app-skill-item [skillValue]="skill.skillName" [skillUsages]="skill.skillUsages"
-                [skillYears]="skill.skillYears" [skillimage]="skill.image"></app-skill-item>
+        <div *ngFor="let skillRow of skillModellRows" class="skill-container">
+            <div *ngFor="let skill of skillRow" class="skill-row">
+                <app-skill-item [skillValue]="skill.skillName" [skillUsages]="skill.skillUsages"
+                    [skillYears]="skill.skillYears" [skillImage]="skill.image"></app-skill-item>
+            </div>
         </div>
     </div>
 </div>

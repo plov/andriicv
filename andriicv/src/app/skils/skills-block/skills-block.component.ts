@@ -16,18 +16,34 @@ import { MainBlockProviderService } from '../../services/data-providers/main-blo
   styleUrl: './skills-block.component.scss'
 })
 export class SkillsBlockComponent implements OnInit {
-  skillsModel: Array<SkillModel> = [];
+  skillsModel: SkillModel[] = [];
+  skillModellRows: SkillModel[][] = [];
+
   private MainBlockProvider: MainBlockProviderService;
   private skillProvider: SkillProviderService;
   private subscription: Subscription = new Subscription();
+  isMobile: boolean = false;
 
-  constructor(private skillProviderService: SkillProviderService, private dataProviderService: MainBlockProviderService, private appStateService: AppStateService) { 
+  constructor(private skillProviderService: SkillProviderService, private dataProviderService: MainBlockProviderService, private appStateService: AppStateService) {
     this.MainBlockProvider = dataProviderService;
     this.skillProvider = skillProviderService;
   }
 
   ngOnInit() {
     this.subscribeToData();
+    this.isMobile = this.checkIfMobile();
+  }
+
+  checkIfMobile(): boolean {
+    return window.matchMedia('(max-width: 768px)').matches;
+  }
+
+  chunkArray(array: SkillModel[], chunkSize: number): SkillModel[][] {
+    const result: SkillModel[][] = [];
+    for (let i = 0; i < array.length; i += chunkSize) {
+      result.push(array.slice(i, i + chunkSize));
+    };
+    return result;
   }
 
   private subscribeToData() {
@@ -37,6 +53,7 @@ export class SkillsBlockComponent implements OnInit {
         if (blockId === 0) {
           this.skillProvider.getSkills().subscribe(data => {
             this.skillsModel = data;
+            this.distributeSkills(this.skillsModel);
           });
         } else {
           this.dataProviderService.getMainBlockById(blockId).subscribe(data => {
@@ -44,11 +61,16 @@ export class SkillsBlockComponent implements OnInit {
             const skillsIds = mainBlockInfo.skillsIds;
             this.skillProvider.getSkillsByIds(skillsIds).subscribe(data => {
               this.skillsModel = data;
+              this.distributeSkills(this.skillsModel);
             });
           });
         }
       })
     );
+  }
+
+  private distributeSkills(array: SkillModel[]) {
+    this.skillModellRows = this.chunkArray(array, this.isMobile ? 4 : 8);
   }
 
   private unsubscribe() {
