@@ -1,0 +1,19 @@
+<div class="info-card-container" (click)="toggleTooltip()">
+    <div class="info-card" [ngClass]="{ 'blurred': isBlurred }">
+        <div class="info-content">
+            <img class="info-icon" [src]="iconSrc">
+            <div *ngIf="textValue && textValue.trim() !== ''">
+                {{ textValue }}
+            </div>
+            <div *ngIf="linkValue && linkValue.trim() !== ''">
+                <a [href]="linkValue" target="_blank" class="text-link" [ngClass]="{ 'disabled-link': isBlurred }">{{
+                    linkText }}</a>
+            </div>
+        </div>
+    </div>
+    <app-info-label-tooltip *ngIf="showTooltip" [text]="'Please log in with your PIN code'">
+    </app-info-label-tooltip>
+    <div *ngIf="isBlurred">
+        <img class="info-icon info-card-image" [src]="lockIcon">
+    </div>
+</div>

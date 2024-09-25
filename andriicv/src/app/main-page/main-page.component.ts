@@ -1,4 +1,4 @@
-(function() {
+(function () {
   if (typeof global === 'undefined') {
     (window as any).global = window;
   }
@@ -9,12 +9,14 @@ import { Component, ViewChild } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import { SkillsBlockComponent } from '../skils/skills-block/skills-block.component';
-import { MainBlocksContainerComponent } from '../main-blocks/main-blocks-container/main-blocks-container.component';
 import { DynamicComponentDirective } from '../directives/dynamic-component.directive';
 import { FullDescriptionComponent } from '../full-descript/full-description/full-description.component';
 import { TabBarComponent } from './tab-bar/tab-bar.component';
 import { AppStateService } from '../services/state-servises/app-state-service.service';
 import { MainBlockProviderService } from '../services/data-providers/main-block-provider.service';
+import { AuthService } from '../services/auth/auth.service';
+import { HorizontalScrollComponent } from './horizontal-scroll/horizontal-scroll.component';
+
 
 
 @Component({
@@ -25,10 +27,10 @@ import { MainBlockProviderService } from '../services/data-providers/main-block-
     RouterModule,
     HeaderComponent,
     SkillsBlockComponent,
-    MainBlocksContainerComponent,
     FullDescriptionComponent,
     DynamicComponentDirective,
-    TabBarComponent
+    TabBarComponent,
+    HorizontalScrollComponent
   ],
   templateUrl: './main-page.component.html',
   styleUrl: './main-page.component.scss'
@@ -36,10 +38,15 @@ import { MainBlockProviderService } from '../services/data-providers/main-block-
 export class MainPageComponent {
   @ViewChild(DynamicComponentDirective, { static: true }) dynamicComponent!: DynamicComponentDirective;
 
-  constructor(private dataProviderService: MainBlockProviderService, private appStateService: AppStateService) { }
+  constructor(private dataProviderService: MainBlockProviderService, private appStateService: AppStateService, public authService: AuthService) { }
 
   ngOnInit() {
-    this.loadDynamicComponent(MainBlocksContainerComponent);
+    if (!this.authService.isAuthenticated() && this.authService.needReload) {
+      this.authService.needReload = false;
+      window.location.reload();
+    }
+
+    this.loadDynamicComponent(HorizontalScrollComponent);
     this.subscribeToData();
   }
 
@@ -55,7 +62,7 @@ export class MainPageComponent {
       if (blockId !== 0)
         this.loadDynamicComponent(FullDescriptionComponent)
       else
-        this.loadDynamicComponent(MainBlocksContainerComponent)
+        this.loadDynamicComponent(HorizontalScrollComponent)
     });
   }
 }

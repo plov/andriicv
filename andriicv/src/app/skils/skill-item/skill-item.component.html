@@ -1,6 +1,13 @@
-<div class="skill-item" (click)="myModal.open()">{{skillValue}}</div>
-<app-skills-description title={{skillValue}}  image={{skillimage}} #myModal>
-    <p>Experience usage {{skillYears}} years</p>
-    <p>Description:</p>
-    <p>{{skillUsages}}</p>
-  </app-skills-description>
+<div class="skill-item" (click)="toggleTooltip()">
+  {{skillValue}}
+  <app-skill-tooltip *ngIf="showTooltip" [title]="skillValue" [description]="skillUsages" [years]="skillYears"
+    [image]="skillImage">
+    </app-skill-tooltip>
+
+    <app-skills-description [title]="skillValue"  [image]="skillImage">
+      <p>Experience usage {{skillYears}} years</p>
+      <p>Description:</p>
+      <p>{{skillUsages}}</p>
+    </app-skills-description>
+</div>
+

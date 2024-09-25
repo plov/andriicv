@@ -1,6 +1,6 @@
-import { ViwerModel } from './viwer-model';
+import { ViewerModel } from './viewer-model';
 
-describe('ViwerModel', () => {
+describe('ViewerModel', () => {
   it('should create an instance', () => {
     expect(new ViwerModel()).toBeTruthy();
   });

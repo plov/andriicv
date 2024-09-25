@@ -1,12 +1,27 @@
 <div class="modal-backdrop" *ngIf="isVisible">
-    <button class="xbtn" (click)="close()">x</button>
-    <div>
-    <label for="email">Email:</label>
-    <input type="email" id="email" (blur)="fetchStoredHash(email.value)" #email>
+  <div class="modal-content">
+
+    <!--<div class="title-container">-->
+    <button class="common-x-button" (click)="close()">
+      <img class="x-icon" [src]="xIcon">
+    </button>
+    <label class="title-label">Login to full access</label>
+    <!--</div>-->
+
+    <div class="pin-lable-container">
+      <label class="сomment-label" [style.color]="labelColor">{{comment}}</label>
+      <div class="pin-input-container">
+        <input class="pin-input" maxlength="1" type="text" placeholder="_" id="pin-1" [(ngModel)]="pinParts[0]" #pinInput autocomplete="off">
+        <input class="pin-input" maxlength="1" type="text" placeholder="_" id="pin-2" [(ngModel)]="pinParts[1]" #pinInput autocomplete="off">
+        <input class="pin-input" maxlength="1" type="text" placeholder="_" id="pin-3" [(ngModel)]="pinParts[2]" #pinInput autocomplete="off">
+        <input class="pin-input" maxlength="1" type="text" placeholder="_" id="pin-4" [(ngModel)]="pinParts[3]" #pinInput autocomplete="off">
+        <input class="pin-input" maxlength="1" type="text" placeholder="_" id="pin-5" [(ngModel)]="pinParts[4]" #pinInput autocomplete="off">
+        <input class="pin-input" maxlength="1" type="text" placeholder="_" id="pin-6" [(ngModel)]="pinParts[5]" #pinInput autocomplete="off">
+      </div>
+    </div>
+    <div class="button-container">
+      <button class="common-button" (click)="close()">Back</button>
+      <button class="common-button selected" (click)="onSubmitClick()">Submit</button>
+    </div>
   </div>
-  <div>
-    <label for="pin">PIN:</label>
-    <input type="password" id="pin" [(ngModel)]="userPin">
-  </div>
-  <button (click)="validatePin()">Validate PIN</button>
 </div>
