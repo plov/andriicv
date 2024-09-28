@@ -1,12 +1,13 @@
 <div class="tooltip">
   <div class="tooltip-content">
-    <div>
-      <img src="{{ image }}" alt="{{ title }}" class="skill-icon">
+    <div class="icon-container">
+      <img src="{{ image }}" class="skill-icon">
     </div>
+    <div>{{ title }}</div>
     <div>
-      {{ years }} of usage
+      {{ years }} years
     </div>
-    <div>
+    <div class="text">
       {{ description }}
     </div>
     <div (click)="openModal()"> more </div>

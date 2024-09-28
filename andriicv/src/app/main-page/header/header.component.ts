@@ -30,7 +30,8 @@ export class HeaderComponent implements OnInit {
     private api: ApiService,
     public authService: AuthService,
     private router: Router) {
-    this.config()
+    this.config();
+    this.authService.isLoggedIn().subscribe((data) => this.onLogin(data));
   }
 
   headerData: Header = new Header();
@@ -53,8 +54,15 @@ export class HeaderComponent implements OnInit {
       this.path = StaticConf.s3backetPath;
     }
   }
+  onLogin(data:any){
+    this.loadData();
+  }
 
   ngOnInit(): void {
+    this.loadData();
+  }
+
+  loadData() {
     this.headerService.getHeaderData().subscribe(data => {
       this.headerData = data;
       this.name = this.headerData.name;
@@ -64,7 +72,7 @@ export class HeaderComponent implements OnInit {
 
       this.status.textValue = this.headerData.status,
         this.status.iconSrc = this.path + StaticConf.greenPointIcon;
-        console.log('this.path + StaticConf.greenPointIcon: ', this.path + StaticConf.greenPointIcon);
+      console.log('this.path + StaticConf.greenPointIcon: ', this.path + StaticConf.greenPointIcon);
 
       this.location.textValue = this.headerData.location,
         this.location.iconSrc = this.path + StaticConf.pointIcon;
