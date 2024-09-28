@@ -12,12 +12,9 @@
 .description-block {
     display: block;
     width: 50%;
-    //background: #def5fc;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-    // border: style_vars.$border-style;
-    // border-radius: 8px;
     font-size: 0.8rem;
     font-weight: 500;
     font-family: Manrope;
@@ -126,12 +123,10 @@
     .description-block {
         display: block;
         width: 90%;
-        background: #def5fc;
         justify-content: space-between;
         align-items: center;
         padding: 10px;
         margin: 0;
-        border: style_vars.$border-style-mob;
         font-weight: 400;
         border-radius: 8px;
         font-size: 0.7rem;
@@ -146,13 +141,5 @@
         height: 60px;
         border-radius: 5px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    }
-
-    .shift {
-        margin: 0;
-        margin-left: 5px;
-        color: #3b2727;
-        font-weight: 450;
-        font-size: 0.9rem;
     }
 }
