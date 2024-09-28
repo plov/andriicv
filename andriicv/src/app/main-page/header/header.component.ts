@@ -64,6 +64,7 @@ export class HeaderComponent implements OnInit {
 
       this.status.textValue = this.headerData.status,
         this.status.iconSrc = this.path + StaticConf.greenPointIcon;
+        console.log('this.path + StaticConf.greenPointIcon: ', this.path + StaticConf.greenPointIcon);
 
       this.location.textValue = this.headerData.location,
         this.location.iconSrc = this.path + StaticConf.pointIcon;

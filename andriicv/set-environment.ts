@@ -1,7 +1,6 @@
 const fs = require('fs');
 const path = require('path');
 
-// List of environment variables that you want to replace
 const envVariables = ['ACCESS_KEY', 'SECRET_KEY'];
 const templateFilePath = path.join(__dirname, 'src/environments/environment.prod.template.ts');
 const targetFilePath = path.join(__dirname, 'src/environments/environment.prod.ts');
@@ -18,8 +17,4 @@ envVariables.forEach((variable) => {
     content = content.replace(placeholder, replacement);
   });
   
-
-// Write the final content to environment.prod.ts
 fs.writeFileSync(targetFilePath, content);
-
-console.log(`Environment variables set in ${targetFilePath}`);
