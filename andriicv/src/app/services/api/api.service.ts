@@ -5,7 +5,7 @@ import { catchError, tap } from 'rxjs/operators';
 import { ViewerModel } from '../../models/viewer/viewer-model';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthResponse, Viewer } from './auth-response';
-import { environment } from '../../../environments/environment.dev';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
