@@ -3,19 +3,34 @@
   bottom: 100%;
   left: 50%;
   transform: translateX(-50%);
-  background-color: white;
-  color: black;
-  font-family: Manrope, sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 23.8px;
-  letter-spacing: 0.02em;
-  text-align: center;
+  background:
+    linear-gradient(45deg, rgba(255, 255, 255, 0.05), rgba(14, 14, 17, 0.5)),
+    linear-gradient(0deg, rgba(14, 14, 17, 0.5), rgba(14, 14, 17, 0.5));
+  border: 1px solid rgba(255, 255, 255, 0.08);
   padding: 8px;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   z-index: 1002;
-  white-space: nowrap;
+  backdrop-filter: blur(10px);
+  //white-space: nowrap;
+}
+
+.tooltip-content {
+  color: rgb(255, 255, 255);
+  font-family: Manrope;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 19.12px;
+  letter-spacing: 0.01em;
+  text-align: left;
+  width: 200px;
+  word-wrap: break-word;
+  word-break: break-word;
+}
+
+.text {
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .tooltip-arrow {
@@ -27,10 +42,16 @@
   height: 0;
   border-left: 8px solid transparent;
   border-right: 8px solid transparent;
-  border-top: 8px solid white;
+  border-top: 8px solid rgba(14, 14, 17, 0.5);
 }
 
-.skill-icon{
+.icon-container {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+
+.skill-icon {
   width: 25px;
   height: 25px;
 }
@@ -40,7 +61,7 @@
     left: auto;
     right: auto;
     transform: none;
-    max-width: 90%; 
+    max-width: 90%;
     white-space: normal;
   }
 

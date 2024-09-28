@@ -17,6 +17,11 @@ export class HeaderProviderService {
 
   constructor(private s3Service: S3Service, private authService: AuthService) {
     this.config()
+    this.authService.isLoggedIn().subscribe((data) => this.onLogin(data));
+  }
+
+  onLogin(data:any){
+    this.isLoggedIn = data;
   }
 
   private config(): void {
@@ -30,9 +35,6 @@ export class HeaderProviderService {
   }
 
   private mapHeaderData(data: any): Header {
-    this.authService.isLoggedIn().subscribe(data => {
-      this.isLoggedIn = data;
-    });
     this.authService.isLoggedIn()
     const header = new Header();
     header.name = data.name;

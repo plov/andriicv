@@ -1,40 +1,42 @@
-<div class="description-block">
-    <button (click)="onBackBtnClick()">back</button>
-    <div class="flex-container">
-        <div class="left">
-            <img src="{{ icon }}" alt=" " class="icon">
-            <p *ngIf="nameHide"><em>Name: </em></p>
-            <p *ngIf="nameHide" class="shift">{{title}}</p>
-            <p *ngIf="positionHide"><em>Position: </em></p>
-            <p *ngIf="positionHide" class="shift">{{position}}</p>
+<div class="container">
+    <div class="description-block">
+        <button (click)="onBackBtnClick()">back</button>
+        <div class="flex-container">
+            <div class="left">
+                <p *ngIf="nameHide" class="text1">{{title}}</p>
+                <p *ngIf="positionHide" class="text2">{{position}}</p>
+                <div class="info-container">
+                    <div *ngIf="yearsHide" class="text2"> {{time}}</div>
+                    <div *ngIf="locationHide" class="text2">{{location}}</div>
+                </div>
+            </div>
+            <div class="right">
+                <img src="{{ icon }}" alt=" " class="icon">
+            </div>
         </div>
-        <div class="right">
-            <p *ngIf="yearsHide"><strong>{{time}}</strong></p>
-            <p *ngIf="locationHide"><strong>{{location}}</strong></p>
+
+        <div *ngIf="shortDeskriptHide">
+            <p class="small-title">Description:</p>
+            <p class="text3" [innerHTML]="description"></p>
         </div>
-    </div>
+        <div *ngIf="responsobilityHide">
+            <p class="small-title">Responsobility:</p>
+            <p class="text3" [innerHTML]="responsobility"></p>
+        </div>
+        <div *ngIf="achievementsHide">
+            <p class="small-title">Achievements:</p>
+            <p class="text3" [innerHTML]="achievements"></p>
+        </div>
 
-    <div *ngIf="shortDeskriptHide">
-        <p><em>Description:</em></p>
-        <p class="shift" [innerHTML]="description"></p>
-    </div>
-    <div *ngIf="responsobilityHide">
-        <p><em>Responsobility:</em></p>
-        <p class="shift" [innerHTML]="responsobility"></p>
-    </div>
-    <div *ngIf="achievementsHide">
-        <p><em>Achievements:</em></p>
-        <p class="shift" [innerHTML]="achievements"></p>
-    </div>
-
-    <div class="block-two">
-        <p>Full description:</p>
-        <p class="shift" [innerHTML]="lDescription"></p>
-    </div>
-    <div class="block-three">
-        <p>Links:</p>
-        <ul>
-            <li *ngFor="let link of links"> <a href="{{link}}" target="_blank">{{link}}</a></li>
-        </ul>
+        <div class="block-two">
+            <p class="small-title">Full description:</p>
+            <p class="text3" [innerHTML]="lDescription"></p>
+        </div>
+        <div class="block-three">
+            <p class="small-title">Links:</p>
+            <ul>
+                <li class="text3" *ngFor="let link of links"> <a href="{{link}}" target="_blank">{{link}}</a></li>
+            </ul>
+        </div>
     </div>
 </div>
