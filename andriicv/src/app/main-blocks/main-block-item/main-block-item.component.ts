@@ -67,7 +67,6 @@ export class MainBlockItemComponent implements OnInit {
     this.linksHide = this.experience.linksHide;
 
     if (environment.production) {
-      console.log("environment.production: " + environment.production)
       this.icon = StaticConf.s3backetPath + StaticConf.iconsPath + this.icon;
     } else {
       this.icon = StaticConf.localPath + StaticConf.iconsPath + this.icon;
