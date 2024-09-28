@@ -22,7 +22,6 @@ export class ApiService {
 
   constructor(private http: HttpClient, private cookieService: CookieService) { }
 
-  // Method to send a POST request to save a new viwer
   addViwer(viewer: ViewerModel): Observable<any> {
     const url = `${this.apiUrl + this.viewerResource}`;
     const token = this.getStoredToken();

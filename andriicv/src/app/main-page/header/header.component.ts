@@ -35,7 +35,7 @@ export class HeaderComponent implements OnInit {
 
   headerData: Header = new Header();
   title = 'andriicv';
-  logoPath = StaticConf.localPath + StaticConf.imagesPath + StaticConf.logoName;
+  path = StaticConf.localPath;
   name = "";
   lastName = "";
   position = "";
@@ -50,7 +50,7 @@ export class HeaderComponent implements OnInit {
 
   private config(): void {
     if (environment.production) {
-      this.logoPath = StaticConf.s3backetPath + StaticConf.imagesPath + StaticConf.logoName;
+      this.path = StaticConf.s3backetPath;
     }
   }
 
@@ -63,30 +63,30 @@ export class HeaderComponent implements OnInit {
       this.summaryText = this.headerData.summaryText;
 
       this.status.textValue = this.headerData.status,
-        this.status.iconSrc = StaticConf.localPath + StaticConf.greenPointIcon;
+        this.status.iconSrc = this.path + StaticConf.greenPointIcon;
 
       this.location.textValue = this.headerData.location,
-        this.location.iconSrc = StaticConf.localPath + StaticConf.pointIcon;
+        this.location.iconSrc = this.path + StaticConf.pointIcon;
 
       this.address.textValue = data.address;
-      this.address.iconSrc = StaticConf.localPath + StaticConf.homeIcon;
+      this.address.iconSrc = this.path + StaticConf.homeIcon;
       this.address.isBlurred = true;
 
       this.phone.textValue = data.phone;
-      this.phone.iconSrc = StaticConf.localPath + StaticConf.phoneIcon;
+      this.phone.iconSrc = this.path + StaticConf.phoneIcon;
       this.phone.isBlurred = true;
 
       this.email.textValue = data.email;
-      this.email.iconSrc = StaticConf.localPath + StaticConf.letterIcon;
+      this.email.iconSrc = this.path + StaticConf.letterIcon;
       this.email.isBlurred = true;
 
       this.USstatus.textValue = data.USstatus;
-      this.USstatus.iconSrc = StaticConf.localPath + StaticConf.flagIcon;
+      this.USstatus.iconSrc = this.path + StaticConf.flagIcon;
       this.USstatus.isBlurred = true;
 
       this.links = data.links;
       this.links.forEach(link => {
-        link.icon = StaticConf.localPath + StaticConf.smallIcons + link.icon;
+        link.icon = this.path + StaticConf.smallIcons + link.icon;
       });
     });
   }
