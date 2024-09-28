@@ -44,7 +44,7 @@ export class ApiService {
     const url = `${this.apiUrl + this.allViewersResource}`;
     const token = this.getStoredToken();
     const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': token, });
-    console.log('headers:', headers);
+    //console.log('headers:', token);
     return this.http.get(url, { headers: headers, withCredentials: true });
   }
 
@@ -66,7 +66,6 @@ export class ApiService {
     return this.http.post<AuthResponse>(url, body, { headers: headers, withCredentials: true })
       .pipe(
         tap(response => {
-          console.log('login response:', response);
           if (response.statusCode === 200) {
           
               const parsedBody = JSON.parse(response.body) as { viewer: Viewer, token: string };
@@ -88,10 +87,6 @@ export class ApiService {
     });
     return this.http.post(url, body, { headers: headers, withCredentials: true });
   }
-
-  //getProtectedData(): Observable<any> {
-  //  return this.http.get<any>(`${this.apiUrl}/protected-resource`, { withCredentials: true });
-  //}
 
   getStoredToken(): string {
     const cookieValue = this.cookieService.get('Authorization');

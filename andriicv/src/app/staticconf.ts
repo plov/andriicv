@@ -23,3 +23,4 @@ static xIcon:string = this.smallIcons + "xmark.png";
 static greenPointIcon:string = this.smallIcons + "green_point.png";
 static flagIcon:string = this.smallIcons + "flag.png";
 }
+

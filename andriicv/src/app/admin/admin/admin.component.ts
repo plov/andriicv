@@ -40,7 +40,6 @@ export class AdminComponent implements OnInit {
       if (data && data.body) {
         try {
           const parsedBody = JSON.parse(data.body);
-          console.log("AdminComponent.ngOnInit() parsedBody: ", parsedBody);
           if (Array.isArray(parsedBody.viewers)) {
             this.viewers = parsedBody.viewers.map((item: {
               id: number,
@@ -70,7 +69,6 @@ export class AdminComponent implements OnInit {
       } else {
         console.error("Expected an object with a body property but got: ", data);
       }
-      console.log("AdminComponent.ngOnInit() parsedBody: ", this.viewers.toString());
     });
   }
 
@@ -85,26 +83,22 @@ export class AdminComponent implements OnInit {
 
   onGenerate() {
     this.generatePin();
-
   }
 
   onSend() {
     this.generateHash();
     this.api.addViwer(new ViewerModel(0, this.name, this.email, this.pincode, this.hash, "", +this.expirationDays)).subscribe(data => {
-      console.log("AdminComponent.onSend() data: " + data.toString());
       this.getViwers();
     });
   }
 
   generatePin() {
     this.pincode = Math.floor(100000 + Math.random() * 900000).toString();
-    console.log("Generated PIN: " + this.pincode);
   }
 
   async generateHash() {
     const salt = await bcrypt.genSalt(10);
     this.hash = await bcrypt.hash(this.pincode, salt);
-    console.log("Generated Hash: " + this.hash);
   }
 
   async checkPinCode(pin: string): Promise<boolean> {

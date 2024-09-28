@@ -32,7 +32,6 @@ export class HeaderProviderService {
   private mapHeaderData(data: any): Header {
     this.authService.isLoggedIn().subscribe(data => {
       this.isLoggedIn = data;
-      console.log('isLoggedIn:', this.isLoggedIn);
     });
     this.authService.isLoggedIn()
     const header = new Header();

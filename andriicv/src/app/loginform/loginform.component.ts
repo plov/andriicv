@@ -106,7 +106,6 @@ export class LoginformComponent implements OnInit, AfterViewInit {
     }
     this.api.login(this.pin).subscribe({
       next: (data) => {
-        console.log(data)
         if (data.statusCode === 200) {
           window.location.reload();
         } else {

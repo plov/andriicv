@@ -1,11 +1,4 @@
-<div class="main-scroll-container">
-  <div class="horizontal-scroll-container">
-    <div class="scroll-wrapper" #scrollWrapper>
-      <div *ngFor="let item of contentArray" class="scroll-item">
-        <app-main-block-item [experience]="item"></app-main-block-item>
-      </div>
-    </div>
-  </div>
+<div class="container">
   <div class="navigation-arrows">
     <button class="arrow left" (click)="scrollLeft()">&#9664;</button>
     <div class="pagination-dots">
@@ -13,4 +6,12 @@
     </div>
     <button class="arrow right" (click)="scrollRight()">&#9654;</button>
   </div>
+  <div class="horizontal-scroll-container">
+    <div class="scroll-wrapper" #scrollWrapper>
+      <div *ngFor="let item of contentArray" class="scroll-item">
+        <app-main-block-item [experience]="item"></app-main-block-item>
+      </div>
+    </div>
+  </div>
+
 </div>

@@ -20,7 +20,6 @@ export class SkillTooltipComponent implements OnInit {
   constructor(private modalService: ModalService) { }
 
   ngOnInit() {
-    //console.log("SkillTooltipComponent: ", this.title, this.image, this.years, this.description);
     if (environment.production) {
       this.image = StaticConf.s3backetPath + StaticConf.iconsPath + this.image;
     } else {
@@ -29,7 +28,6 @@ export class SkillTooltipComponent implements OnInit {
   }
 
   openModal() {
-    console.log('tooltip openModal')
     this.modalService.openModal();
   }
 }
