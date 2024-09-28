@@ -5,13 +5,14 @@ import { catchError, tap } from 'rxjs/operators';
 import { ViewerModel } from '../../models/viewer/viewer-model';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthResponse, Viewer } from './auth-response';
+import { environment } from '../../../environments/environment.dev';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
 
-  private apiUrl = 'https://yxnld64z44.execute-api.us-east-1.amazonaws.com/PlovStage/';
+  private apiUrl = environment.apiUrl;
   private viewerResource = "viewer";
   private allViewersResource = "viewers";
   private deleteViewersResource = "viewers/delete";
