@@ -12,6 +12,7 @@ import { Link } from '../../models/header-info/link';
 import { LoginformComponent } from '../../loginform/loginform.component';
 import { InfoLabelComponent } from '../info-label/info-label.component';
 import { InfoLabelModel } from '../../models/header-info/info-label-model';
+import { DocGeneratorService } from '../../services/doc-generator/doc-generator.service';
 
 @Component({
   selector: 'app-header',
@@ -29,7 +30,8 @@ export class HeaderComponent implements OnInit {
     private headerService: HeaderProviderService,
     private api: ApiService,
     public authService: AuthService,
-    private router: Router) {
+    private router: Router,
+    private docGeneratorService: DocGeneratorService) {
     this.config();
     this.authService.isLoggedIn().subscribe((data) => this.onLogin(data));
   }
@@ -49,12 +51,14 @@ export class HeaderComponent implements OnInit {
   links: Array<Link> = [];
   USstatus: InfoLabelModel = new InfoLabelModel();
 
+  content: string = 'This is the content to be saved in the DOC file.';
+
   private config(): void {
     if (environment.production) {
       this.path = StaticConf.s3backetPath;
     }
   }
-  onLogin(data:any){
+  onLogin(data: any) {
     this.loadData();
   }
 
@@ -105,5 +109,9 @@ export class HeaderComponent implements OnInit {
   }
   onLoginClick() {
     this.loginFormModal.open();
+  }
+
+  onSaveDoc(): void {
+    this.docGeneratorService.generateDoc(this.content);
   }
 }

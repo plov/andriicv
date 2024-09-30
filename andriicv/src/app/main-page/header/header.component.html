@@ -38,6 +38,9 @@
             <div *ngIf="(authService.isAdministrator() | async)">
                 <button class="common-button selected" (click)="onAnminClick()">admin panel</button>
             </div>
+            <div class="save-file-container">
+                <button class="common-button" (click)="onSaveDoc()">Save as DOC</button>
+            </div>
         </div>
         <ng-template #notLoggedIn>
             <div>
