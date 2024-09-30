@@ -4,7 +4,6 @@ import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ApiService } from '../../services/api/api.service';
 import { ViewerModel } from '../../models/viewer/viewer-model';
-import * as bcrypt from 'bcryptjs';
 import { AuthService } from '../../services/auth/auth.service';
 
 
@@ -58,7 +57,7 @@ export class AdminComponent implements OnInit {
               item.hash,
               this.dataConvert(item.created),
               item.expiration,
-              item.visit
+              item.visit !=""? this.dataConvert(item.visit) : item.visit
             ));
           } else {
             console.error("Expected an array but got: ", parsedBody.viewers);
@@ -86,7 +85,6 @@ export class AdminComponent implements OnInit {
   }
 
   onSend() {
-    this.generateHash();
     this.api.addViwer(new ViewerModel(0, this.name, this.email, this.pincode, this.hash, "", +this.expirationDays)).subscribe(data => {
       this.getViwers();
     });
@@ -94,16 +92,6 @@ export class AdminComponent implements OnInit {
 
   generatePin() {
     this.pincode = Math.floor(100000 + Math.random() * 900000).toString();
-  }
-
-  async generateHash() {
-    const salt = await bcrypt.genSalt(10);
-    this.hash = await bcrypt.hash(this.pincode, salt);
-  }
-
-  async checkPinCode(pin: string): Promise<boolean> {
-    const isMatch = await bcrypt.compare(pin, this.hash);
-    return isMatch;
   }
 
   onCheckboxChange(event: Event, viewerId: number): void {
@@ -118,9 +106,7 @@ export class AdminComponent implements OnInit {
   onDeleteViewer(): void {
     const selectedViewers = this.viewers.filter(viewer => this.selectedViewerIds.has(+viewer.id));
     const selectedViewersWOone = selectedViewers.filter(viewer => viewer.id !== 1);
-    //selectedViewersWOone.forEach(viewer => console.log("Deleting viewer -1: ", viewer));
     this.api.deleteViewers(selectedViewersWOone).subscribe(response => {
-      // Handle response
       this.viewers = this.viewers.filter(viewer => !this.selectedViewerIds.has(+viewer.id));
       this.selectedViewerIds.clear();
     });

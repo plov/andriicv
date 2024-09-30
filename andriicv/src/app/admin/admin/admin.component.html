@@ -1,17 +1,18 @@
 <div class="pin-code-block"
   *ngIf="(authService.isLoggedIn() | async) && (authService.isAdministrator() | async) ; else notLoggedIn">
-  <div><button (click)="onLogout()">Logout</button></div>
+  <div><button class="logout-button" (click)="onLogout()">Logout</button></div>
   <div class="createViewer">
     <input email type="text" placeholder="Enter email" [(ngModel)]="email">
     <input name type="text" placeholder="Enter name" [(ngModel)]="name">
-    <input name type="text" placeholder="Press to generate pin" [(ngModel)]="pincode">
-    <input name type="text" placeholder="expiration days" [(ngModel)]="expirationDays">
-    <button (click)="onGenerate()">generate</button>
-    <button (click)="onSend()">send</button>
+    <div class="inline-container">
+      <button (click)="onGenerate()">Generate</button>
+      <input name type="text" placeholder="Press to generate pin" [(ngModel)]="pincode">
+    </div>
+    <input name type="text" placeholder="Expiration days" [(ngModel)]="expirationDays">
+    <button (click)="onSend()">Send</button>
   </div>
 
   <div class="showViewers">
-
     <h1>Viewers</h1>
     <table>
       <thead>
