@@ -44,7 +44,6 @@ export class ApiService {
     const url = `${this.apiUrl + this.allViewersResource}`;
     const token = this.getStoredToken();
     const headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': token, });
-    //console.log('headers:', token);
     return this.http.get(url, { headers: headers, withCredentials: true });
   }
 

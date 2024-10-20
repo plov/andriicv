@@ -1,0 +1,79 @@
+.timeline-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 50%;
+  overflow-x: auto;
+  padding: 20px;
+}
+
+.years-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.measurment-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.year {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+ // border: 1px solid rgba(255, 255, 255, 0.5);
+  position: relative;
+  left: -10px;
+  top: 10px;
+}
+
+.measurment {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+ // border: 1px solid rgba(255, 255, 255, 0.5);
+  position: relative;
+}
+
+.year-mark {
+  font-size: 12px;
+  font-weight: bold;
+  margin-right: 20px;
+
+}
+
+.year-value {
+  font-size: 12px;
+  font-weight: bold;
+  color: rgba(255, 255, 255, 0.5);
+  margin-right: 60px;
+}
+
+.quarter-mark {
+  top: -20px;
+  width: 1px;
+  height: 5px;
+  background-color: rgba(255, 255, 255, 0.5);
+  margin-right: 20px;
+  /* Adjust spacing between marks */
+}
+
+.year-mark::after {
+  content: '';
+  width: 1px;
+  height: 10px;
+  background-color: rgba(255, 255, 255, 0.5);
+  display: block;
+  margin-top: 10px;
+}

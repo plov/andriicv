@@ -16,6 +16,7 @@ import { AppStateService } from '../services/state-servises/app-state-service.se
 import { MainBlockProviderService } from '../services/data-providers/main-block-provider.service';
 import { AuthService } from '../services/auth/auth.service';
 import { HorizontalScrollComponent } from './horizontal-scroll/horizontal-scroll.component';
+import { TimelineComponent } from '../time-line/timeline.component';
 
 
 
@@ -30,7 +31,8 @@ import { HorizontalScrollComponent } from './horizontal-scroll/horizontal-scroll
     FullDescriptionComponent,
     DynamicComponentDirective,
     TabBarComponent,
-    HorizontalScrollComponent
+    HorizontalScrollComponent,
+    TimelineComponent
   ],
   templateUrl: './main-page.component.html',
   styleUrl: './main-page.component.scss'
