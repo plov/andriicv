@@ -3,6 +3,7 @@
   justify-content: center;
   align-items: center;
   width: 100%;
+  
 }
 
 .timeline {
@@ -12,68 +13,51 @@
   width: 50%;
   overflow-x: auto;
   padding: 20px;
-}
-
-.years-container {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-
-.measurment-container {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-
-.year {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
- // border: 1px solid rgba(255, 255, 255, 0.5);
   position: relative;
-  left: -10px;
-  top: 10px;
+  height: 400px;
 }
 
-.measurment {
+.scale-container {
   display: flex;
-  flex-direction: row;
-  align-items: center;
- // border: 1px solid rgba(255, 255, 255, 0.5);
+  justify-content: flex-start; /* Align items tightly together */
+  align-items: flex-end;
+  margin: 0;
+  margin-top: 25px; 
+  padding: 0;
+}
+
+.scale-group {
+  display: flex;
+  margin: 0; 
+  padding: 0; 
+}
+
+.scale-unit {
+  display: flex;
+  align-items: flex-end;
   position: relative;
+  margin: 0; 
+  padding: 0;
 }
 
-.year-mark {
-  font-size: 12px;
-  font-weight: bold;
-  margin-right: 20px;
-
-}
-
-.year-value {
-  font-size: 12px;
-  font-weight: bold;
-  color: rgba(255, 255, 255, 0.5);
-  margin-right: 60px;
-}
-
-.quarter-mark {
-  top: -20px;
-  width: 1px;
-  height: 5px;
+.test-element{
+  margin-left: 10px;
+  margin-top: 50px;
+  transform: translateX(380px);
+  display: flex;
+  width: 560px;
+  height: 20px;
+  position: absolute;
   background-color: rgba(255, 255, 255, 0.5);
-  margin-right: 20px;
-  /* Adjust spacing between marks */
 }
 
-.year-mark::after {
-  content: '';
-  width: 1px;
-  height: 10px;
+.test-element2{
+  margin-left: 10px;
+  margin-top: 50px;
+  transform: translateX(60px);
+  display: flex;
+  width: 240px;
+  height: 20px;
   background-color: rgba(255, 255, 255, 0.5);
-  display: block;
-  margin-top: 10px;
+  position: absolute;
 }

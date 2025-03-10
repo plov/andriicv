@@ -13,18 +13,8 @@ import { AppStateService } from '../state-servises/app-state-service.service';
 })
 export class MainBlockProviderService {
 
-  private dataPath: string = StaticConf.localPath + StaticConf.dataPath;
-  
   constructor(private s3Service: S3Service, private appStateService: AppStateService) { 
-    this.config()
   }
-
-  private config(): void {
-    if (environment.production) {
-      this.dataPath = StaticConf.s3backetPath + StaticConf.dataPath;
-    }
-  }
-  
 
   getMainBlocksInfo(): Observable<Array<MainBlockModel>> {
     return this.getMainBlockJsonFromS3().pipe(
@@ -53,6 +43,10 @@ export class MainBlockProviderService {
     mainBlockModel.blockViewOrder = mainBlockObj.blockViewOrder;
     mainBlockModel.blockName = mainBlockObj.blockName;
     mainBlockModel.years = mainBlockObj.years;
+    mainBlockModel.monthStart = mainBlockObj.monthStart;
+    mainBlockModel.monthEnd = mainBlockObj.monthEnd;
+    mainBlockModel.yearStart = mainBlockObj.yearStart;
+    mainBlockModel.yearEnd = mainBlockObj.yearEnd;
     mainBlockModel.position = mainBlockObj.position;
     mainBlockModel.responsobility = Array.isArray(mainBlockObj.responsobility ) ? mainBlockObj.responsobility.join('') : mainBlockObj.responsobility;
     mainBlockModel.achievements = Array.isArray(mainBlockObj.achievements) ? mainBlockObj.achievements.join('') : mainBlockObj.achievements;

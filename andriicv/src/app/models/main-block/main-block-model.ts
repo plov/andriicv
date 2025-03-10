@@ -8,6 +8,11 @@ export class MainBlockModel {
     public yearsHide: boolean = false;
     public years: string = "";
 
+    public monthStart: number = 0;
+    public monthEnd: number = 0;
+    public yearStart: number = 0;
+    public yearEnd: number = 0;
+
     public positionHide: boolean = false;
     public position = "";
 
