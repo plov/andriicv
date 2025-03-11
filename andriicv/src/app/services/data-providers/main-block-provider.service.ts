@@ -7,13 +7,14 @@ import { StaticConf } from '../../staticconf';
 import { MainBlockModel } from '../../models/main-block/main-block-model';
 import { S3Service } from '../s3/s3-service.service';
 import { AppStateService } from '../state-servises/app-state-service.service';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MainBlockProviderService {
 
-  constructor(private s3Service: S3Service, private appStateService: AppStateService) { 
+  constructor(private s3Service: S3Service, private appStateService: AppStateService, private http: HttpClient) { 
   }
 
   getMainBlocksInfo(): Observable<Array<MainBlockModel>> {

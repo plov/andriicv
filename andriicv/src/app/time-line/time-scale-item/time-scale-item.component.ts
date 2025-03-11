@@ -16,11 +16,21 @@ export class TimeScaleItemComponent {
   widthPx: number = 20;
   widthYearPx: number = 4 * this.widthPx;
 
+  currentYear: number = new Date().getFullYear();
+  currentMonth: number = new Date().getMonth() + 1;
+
   getPosition(): number{
     return this.convertToPx(this.item.monthStart, this.item.yearStart); 
   }
 
+  getLength(): number{
+    if(this.item.monthEnd == 0 && this.item.yearEnd == 0){
+      return this.convertToPx(this.currentMonth, this.currentYear) - this.getPosition();
+    }
+    return this.convertToPx(this.item.monthEnd, this.item.yearEnd) - this.getPosition() -2;
+  }
+
   convertToPx(month:number, year:number): number{
-    return (((year - this.firstYear) * this.widthYearPx) + this.widthYearPx / month);
+    return (((year - this.firstYear) * this.widthYearPx) + this.widthYearPx / 12 * month);
   }
 }

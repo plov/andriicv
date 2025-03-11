@@ -26,7 +26,7 @@ export class TimelineComponent {
       this.timeScaleItems = data;
     });
 
-    for (let year = 2000; year <= 2026; year++) {
+    for (let year = 2000; year <= 2025; year++) {
       this.years.push(year.toString());
     }
   }
